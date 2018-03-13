@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-13T03:02:06.472Z</updated>
+  <updated>2018-03-13T05:48:38.798Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,21 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>第二次写博客</title>
+    <link href="http://yoursite.com/2018/03/13/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2018/03/13/第二次写博客/</id>
+    <published>2018-03-13T05:44:40.000Z</published>
+    <updated>2018-03-13T05:48:38.798Z</updated>
+    
+    <content type="html"><![CDATA[<p>不忘初心，做好准备<br><a id="more"></a><br>第一次正式弄好博客，对于我来说，确实有点慢了，感觉应该早一点就弄博客了，之前一直没弄，很后悔没早一点弄好博客<br>但总的来说，现在开始弄也不晚，希望自己能一直保持这种态度。努力前行</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;不忘初心，做好准备&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="生活闲聊" scheme="http://yoursite.com/tags/%E7%94%9F%E6%B4%BB%E9%97%B2%E8%81%8A/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CSS3学习笔记</title>
     <link href="http://yoursite.com/2018/03/12/CSS3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2018/03/12/CSS3学习笔记/</id>
     <published>2018-03-12T14:49:15.000Z</published>
-    <updated>2018-03-13T03:02:06.472Z</updated>
+    <updated>2018-03-13T05:55:36.081Z</updated>
     
-    <content type="html"><![CDATA[<p>Css3动画中的重要属性<br>@keyframes 作用：规定动画规划</p><p>关于animation<br>可设置六个动画属性<br>animation-name<br>animation-duration<br>animation-timing-function<br>animation-delay<br>animation-iteration-count<br>animation-direction<br>animation 所有动画属性的简写属性，可以直接在括号内选择后面的属性进行填写<br>animation-name 规定@keyframes动画的名称<br>animation-duration   规定动画完成一个周期所花费的秒或毫秒<br>animation-timing-function  规定动画的速度曲线<br>可选项：linear线性（速度不变）ease、ease-in、ease-out、ease-in-out<br>animation-delay规定动画何时开始<br>可以为负值，能立即呈现<br>animation-iteration-count规定动画被播放的次数<br>animation-direction规定动画是否在下一周期逆向地播放<br>可选值：normal默认值，alternate动画应该轮流反向播放<br>aniamtion-play-state规定动画是否正在运行或暂停<br>属性值：paused规定动画暂停 running规定动画正在播放<br>aniamtion-fill-mode规定对象动画时间之外的状态<br>none:不改变默认行为<br>forwards 当动画完成后，保持最后一个属性值(在最后一个关键帧中定义)<br>backwards 在animation-delay所指定的一段时间内，在动画显示之前，应用开始属性值(在第一个关键帧中定义)<br>both：向前和向后填充模式都被应用</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Css3动画中的重要属性"><a href="#Css3动画中的重要属性" class="headerlink" title="Css3动画中的重要属性"></a>Css3动画中的重要属性</h1><h2 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h2><p>作用：规定动画规划</p><h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>六个主要的动画属性</p><ul><li>animation-name </li><li>animation-duration</li><li>animation-timing-function</li><li>animation-delay</li><li>animation-iteration-count</li><li>animation-direction</li></ul><p>animation 所有动画属性的简写属性，可以直接在括号内选择后面的属性进行填写<br>animation-name 规定@keyframes动画的名称<br>animation-duration   规定动画完成一个周期所花费的秒或毫秒<br>animation-timing-function  规定动画的速度曲线<br>可选项：linear线性（速度不变）ease、ease-in、ease-out、ease-in-out<br>animation-delay规定动画何时开始<br>可以为负值，能立即呈现<br>animation-iteration-count规定动画被播放的次数<br>animation-direction规定动画是否在下一周期逆向地播放<br>可选值：normal默认值，alternate动画应该轮流反向播放<br>aniamtion-play-state规定动画是否正在运行或暂停<br>属性值：paused规定动画暂停 running规定动画正在播放<br>aniamtion-fill-mode规定对象动画时间之外的状态<br>none:不改变默认行为<br>forwards 当动画完成后，保持最后一个属性值(在最后一个关键帧中定义)<br>backwards 在animation-delay所指定的一段时间内，在动画显示之前，应用开始属性值(在第一个关键帧中定义)<br>both：向前和向后填充模式都被应用</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;Css3动画中的重要属性&lt;br&gt;@keyframes 作用：规定动画规划&lt;/p&gt;
-&lt;p&gt;关于animation&lt;br&gt;可设置六个动画属性&lt;br&gt;animation-name&lt;br&gt;animation-duration&lt;br&gt;animation-timing-function
-      
+      一些简单的css知识
     
     </summary>
     
