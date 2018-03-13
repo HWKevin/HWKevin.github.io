@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-13T05:48:38.798Z</updated>
+  <updated>2018-03-13T11:31:07.642Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Markdown学习笔记</title>
+    <link href="http://yoursite.com/2018/03/13/Markdown%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2018/03/13/Markdown学习笔记/</id>
+    <published>2018-03-13T11:31:07.000Z</published>
+    <updated>2018-03-13T11:31:07.642Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>第二次写博客</title>
@@ -41,9 +55,9 @@
     <link href="http://yoursite.com/2018/03/12/CSS3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2018/03/12/CSS3学习笔记/</id>
     <published>2018-03-12T14:49:15.000Z</published>
-    <updated>2018-03-13T07:34:55.130Z</updated>
+    <updated>2018-03-13T12:50:31.385Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Css3动画"><a href="#Css3动画" class="headerlink" title="Css3动画"></a>Css3动画</h1><h2 id="keyframes规则"><a href="#keyframes规则" class="headerlink" title="@keyframes规则"></a>@keyframes规则</h2><p>作用：规定动画规划<br>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes triangle&#123;</span><br><span class="line">0%&#123;</span><br><span class="line">transform:rotate(0deg)</span><br><span class="line">&#125;</span><br><span class="line">100%&#123;</span><br><span class="line">transform:rotate(180deg)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>六个主要的动画属性</p><ul><li>animation-name </li><li>animation-duration</li><li>animation-timing-function</li><li>animation-delay</li><li>animation-iteration-count</li><li>animation-direction</li></ul><p>animation 所有动画属性的简写属性，可以直接在括号内选择后面的属性进行填写<br>animation-name 规定@keyframes动画的名称<br>animation-duration   规定动画完成一个周期所花费的秒或毫秒<br>animation-timing-function  规定动画的速度曲线<br>可选项：linear线性（速度不变）ease、ease-in、ease-out、ease-in-out<br>animation-delay规定动画何时开始<br>可以为负值，能立即呈现<br>animation-iteration-count规定动画被播放的次数<br>animation-direction规定动画是否在下一周期逆向地播放<br>可选值：normal默认值，alternate动画应该轮流反向播放<br>aniamtion-play-state规定动画是否正在运行或暂停<br>属性值：paused规定动画暂停 running规定动画正在播放<br>aniamtion-fill-mode规定对象动画时间之外的状态<br>none:不改变默认行为<br>forwards 当动画完成后，保持最后一个属性值(在最后一个关键帧中定义)<br>backwards 在animation-delay所指定的一段时间内，在动画显示之前，应用开始属性值(在第一个关键帧中定义)<br>both：向前和向后填充模式都被应用</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Css3动画"><a href="#Css3动画" class="headerlink" title="Css3动画"></a>Css3动画</h1><h2 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h2><p>@keyframes中必须要有三个值</p><ol><li>animationname 动画名称</li><li>动画的起始到结束的百分比状态，常用from、to表示直接从0%到100%</li><li>css样式</li></ol><p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes triangle&#123;</span><br><span class="line">0%&#123;</span><br><span class="line">transform:rotate(0deg)</span><br><span class="line">&#125;</span><br><span class="line">100%&#123;</span><br><span class="line">transform:rotate(180deg)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><h3 id="animation所有动画属性"><a href="#animation所有动画属性" class="headerlink" title="animation所有动画属性"></a>animation所有动画属性</h3><ul><li>animation-name动画名称</li><li>animation-duration一次动画过程所需的时间</li><li>animation-timing-function动画的速度曲线</li><li>animation-delay 动画的延迟时间</li><li>animation-iteration-count 动画所播放的次数</li><li>animation-direction 动画的播放顺序</li><li>animation-play-state 动画的状态</li><li>animation-fill-mode 动画结束的状态</li></ul><p>例子：animation:move 5s linear 1s 2 alternate running forwards<br>名为move的动画 一个动画时间为5m 移动速度曲线为线性的 加载完成延迟1s后动画开始 动画来回循环 动画运动状态为运行中 动画停止状态为保持最后一帧的结束动画不变</p>]]></content>
     
     <summary type="html">
     
