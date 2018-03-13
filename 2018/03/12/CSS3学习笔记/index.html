@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="基础的CSS3动画知识">
+<meta name="description" content="CSS3笔记">
 <meta name="keywords" content="CSS3 学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS3学习笔记">
 <meta property="og:url" content="http://yoursite.com/2018/03/12/CSS3学习笔记/index.html">
 <meta property="og:site_name" content="HWKevin&#39;s Blog">
-<meta property="og:description" content="基础的CSS3动画知识">
+<meta property="og:description" content="CSS3笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-13T15:11:00.865Z">
+<meta property="og:updated_time" content="2018-03-13T15:53:50.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS3学习笔记">
-<meta name="twitter:description" content="基础的CSS3动画知识">
+<meta name="twitter:description" content="CSS3笔记">
 
 
 
@@ -359,7 +359,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  434
+                  609
                 </span>
               
 
@@ -375,7 +375,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -383,7 +383,7 @@
 
           
               <div class="post-description">
-                  基础的CSS3动画知识
+                  CSS3笔记
               </div>
           
 
@@ -400,13 +400,23 @@
       
 
       
-        <h1 id="Css3动画"><a href="#Css3动画" class="headerlink" title="Css3动画"></a>Css3动画</h1><h2 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h2><p>@keyframes中必须要有三个值</p>
+        <h1 id="Css3边框"><a href="#Css3边框" class="headerlink" title="Css3边框"></a>Css3边框</h1><h2 id="border-radius-设置圆角"><a href="#border-radius-设置圆角" class="headerlink" title="border-radius 设置圆角"></a>border-radius 设置圆角</h2><p><strong>语法：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">border-radius:10px;</span><br><span class="line">-moz-border-radius:10px; /* old Opera */</span><br></pre></td></tr></table></figure></p>
+<h2 id="box-shadow-边框阴影"><a href="#box-shadow-边框阴影" class="headerlink" title="box-shadow 边框阴影"></a>box-shadow 边框阴影</h2><p><strong>语法：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: h-shadow w-shadow blur spread color inset;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>h-shadow 水平阴影的位置</li>
+<li>w-shadow 垂直阴影的位置</li>
+<li>blur 阴影模糊半径</li>
+<li>spread 阴影扩展半径-其值为正时扩大阴影，其值为负值时，缩小阴影</li>
+<li>color 阴影颜色</li>
+<li>inset 投影方式</li>
+</ul>
+<h1 id="Css3动画"><a href="#Css3动画" class="headerlink" title="Css3动画"></a>Css3动画</h1><h2 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h2><p>@keyframes中必须要有三个值</p>
 <ol>
 <li>animationname 动画名称</li>
 <li>动画的起始到结束的百分比状态，常用from、to表示直接从0%到100%</li>
 <li>css样式</li>
 </ol>
-<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes triangle&#123;</span><br><span class="line">	0%&#123;</span><br><span class="line">		transform:rotate(0deg)</span><br><span class="line">	&#125;</span><br><span class="line">	100%&#123;</span><br><span class="line">		transform:rotate(180deg)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>例子：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> triangle&#123;</span><br><span class="line">	0%&#123;</span><br><span class="line">		<span class="attribute">transform</span>:<span class="built_in">rotate</span>(0deg)</span><br><span class="line">	&#125;</span><br><span class="line">	100%&#123;</span><br><span class="line">		<span class="attribute">transform</span>:<span class="built_in">rotate</span>(180deg)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><h3 id="animation所有动画属性"><a href="#animation所有动画属性" class="headerlink" title="animation所有动画属性"></a>animation所有动画属性</h3><ul>
 <li>animation-name动画名称</li>
 <li>animation-duration一次动画过程所需的时间</li>
@@ -425,7 +435,8 @@ animation-iteration-count 动画播放的次数
 animation-direction 可选值为normal和alternate ,nomral为普通播放，从0%到100%动画播放。alternate则为来回循环
 animation-play-state 可选值为running和paused。分别为运行和暂停状态
 animation-fill-mode 为元素规定填充模式 none不改变默认行为，forwards动画完成保持最后一个属性值，backwards动画完成保持开始的属性值，both前后模式都填充
-</code></pre>
+</code></pre><p><strong>例子</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> mymove&#123;</span><br><span class="line">	<span class="selector-tag">from</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:red;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">to</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:blue;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">@-<span class="keyword">moz</span>-<span class="keyword">keyframes</span> mymove&#123; <span class="comment">/* Firefox */</span></span><br><span class="line">	<span class="selector-tag">from</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:red;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">to</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:blue;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">@-<span class="keyword">webkit</span>-<span class="keyword">keyframes</span> mymove&#123; <span class="comment">/* Safari Chrome */</span></span><br><span class="line">	<span class="selector-tag">from</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:red;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">to</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:blue;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">@-<span class="keyword">o</span>-<span class="keyword">keyframes</span> mymove&#123; <span class="comment">/* Opera */</span></span><br><span class="line">	<span class="selector-tag">from</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:red;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">to</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:blue;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -616,7 +627,7 @@ animation-fill-mode 为元素规定填充模式 none不改变默认行为，forw
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Css3动画"><span class="nav-number">1.</span> <span class="nav-text">Css3动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#keyframes"><span class="nav-number">1.1.</span> <span class="nav-text">@keyframes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#animation"><span class="nav-number">1.2.</span> <span class="nav-text">animation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#animation所有动画属性"><span class="nav-number">1.2.1.</span> <span class="nav-text">animation所有动画属性</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Css3边框"><span class="nav-number">1.</span> <span class="nav-text">Css3边框</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#border-radius-设置圆角"><span class="nav-number">1.1.</span> <span class="nav-text">border-radius 设置圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#box-shadow-边框阴影"><span class="nav-number">1.2.</span> <span class="nav-text">box-shadow 边框阴影</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Css3动画"><span class="nav-number">2.</span> <span class="nav-text">Css3动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#keyframes"><span class="nav-number">2.1.</span> <span class="nav-text">@keyframes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#animation"><span class="nav-number">2.2.</span> <span class="nav-text">animation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#animation所有动画属性"><span class="nav-number">2.2.1.</span> <span class="nav-text">animation所有动画属性</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -649,7 +660,7 @@ animation-fill-mode 为元素规定填充模式 none不改变默认行为，forw
 
 	<div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共1.0k字</span>
+	<span class="post-count">博客全站共1.2k字</span>
 	</div>
   <!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> -->
 
