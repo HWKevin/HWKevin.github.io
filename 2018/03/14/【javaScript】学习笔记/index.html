@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="HWKevin&#39;s Blog">
 <meta property="og:description" content="javascript有三部分组成核心ECMAscript文档对象模型DOM (Document Object Model) 提供访问和操作网页内容的方法和借口浏览器对象模型BOM (Browser Object Model) 提供与浏览器交互的方法与借口 组成部分：语法、类型、语句、关键字、保留字、操作符、对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T14:53:10.368Z">
+<meta property="og:updated_time" content="2018-03-17T14:26:28.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【javaScript】学习笔记">
 <meta name="twitter:description" content="javascript有三部分组成核心ECMAscript文档对象模型DOM (Document Object Model) 提供访问和操作网页内容的方法和借口浏览器对象模型BOM (Browser Object Model) 提供与浏览器交互的方法与借口 组成部分：语法、类型、语句、关键字、保留字、操作符、对象">
@@ -405,11 +405,177 @@
 <li><p>关键字和保留字</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ECMAscript的全部关键字</span><br><span class="line">break do instanceof typeof case else new var catch finally return void continue for switch while debugger function this with default if throw delete in try</span><br><span class="line"></span><br><span class="line">保留字</span><br><span class="line">abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws const goto private transient debugger implements protected volatile double import public</span><br><span class="line"></span><br><span class="line">第5版在非严格模式下运行时的保留字缩减为</span><br><span class="line">class enum extends super conset export import </span><br><span class="line">在严格模式下，第5班对以下保留字施加限制</span><br><span class="line">implements package public interface private static let protected yield</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>变量<br>ECMAScript的变量是松散类型，用来保存任何类型的数据，每个变量仅仅是一个用于保存值的占位符。定义变量的时使用var操作符，勾结一个标识符。<br>var message 定义了一个名为message的变量。可以用阿里保存任何值，为为进过初始化的</p>
-</li>
-<li><p>保存类型<br>5中类型 undefined none number string object到最后就是保存上面的其中一种</p>
+<li><p>变量<br>ECMAScript的变量是松散类型，用来保存任何类型的数据，每个变量仅仅是一个用于保存值的占位符。定义变量的时使用var操作符，勾结一个标识符。<br>var message 定义了一个名为message的变量。可以用保存任何值，为为进过初始化的</p>
 </li>
 </ol>
+<h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>Number类型<br>    浮点数值</p>
+<pre><code>    对于极大或绩效的数值，可以用e表示法
+    var floatNum= 3.1415e7;//等于3.1415乘以10
+    实际含义就是3.1415乘以10的7次方。
+    负电数值的最高精度是17位小数，但在进行算术计算时的精确度远远不如整数。例如0.1加0.2的结果不是0.3 而是0.30000000000000004.这个小小的舍入误差会导致无法测试特定的浮点数值。
+    因此，永远不要测试某个特定的浮点数值。
+
+数值范围
+    isFinite()确定在有效区间内
+    isFinite(result);
+
+NaN(Not A Number)
+isNaN()用来检测变量是否是NaN
+alert(isNaN(NaN))//true
+alert(isNaN(&quot;10&quot;))//false
+alert(isNaN(&quot;blue&quot;))//true
+alert(isNaN(true))//false boolean型可以转换成1
+alert(isNaN(10))//false
+
+数值转换 Number() parseInt() parseFloat()
+Number()转换规则
+boolean -&gt; 0 1
+数字值  -&gt; 数字值
+null -&gt; 0
+undefined -&gt; 返回NaN
+字符串
+    只包含数字。只会转换成十进制。前面有0将会忽略    
+    包含有效的浮点格式。转换成对应的浮点数
+    包含有效的十六进制格式(0x)，则将其转换成相同大小的十进制整数值
+    字符串为空，转换成0
+    除以上格式，转换成NaN
+如果为对象，则代用对象的valueOf()方法，然后依照前面的规则转换返回的值，如果转换的结果为NaN，则调用对象的方法toString()方法，然后再次依照前面的规则转换返回的字符串值。
+    例子：
+        var num1 = Number(&quot;Hello World&quot;)    //NaN
+        var num2 = Number(&quot;10&quot;)                //10
+        var num3 = Number(&quot;&quot;)                 //0
+        var num4 = Number(&quot;true&quot;)            //1
+    由于Number()函数在转换字符串比较复杂,处理整数时通常采用parseInt()函数。会忽略字符串前面的空格，直至找到第一个非空格字符。即如果第一个字符不为数字，即类型会转换为NaN;可以识别三种进制格式。但要在后面添加一个参数。即 parseInt(&quot;071&quot;,8)八进制数——&gt;十进制15
+        var parseInt1 = parseInt(&quot;123abc&quot;);// 123
+        var parseInt2 =    parseInt(&quot;&quot;); //NaN
+        var parseInt3= parseInt(&quot;071&quot;,8); //八进制 十进制数为15
+        var parseInt4 = parseInt(&quot;A&quot;,16); //十六进制 十进制数为10
+</code></pre><p>字符串类型 string<br>可用””或者’’两种语法形式<br>var testString = “test”;<br>var testString = ‘test’;</p>
+<ol>
+<li>字符串字面量<br>String包含一些特殊的字符字面量，转义字符。用于表示非打印字符，或者具有其他用途的字符。这些字符字面量如下表<br>\n换行 \t制表 \b空格 \r回车 \f \’ * \” \xnn \unnn </li>
+<li><p>字符串的特点<br> 创建后不能更改，其值不能盖板边，要改变某个变量保存的字符串，只能销毁原本的字符串，然后在用另一个包含新值的字符串填充该变量<br> var lang= “hello”;<br> var lang=lang+”world”;//lang为helloworld</p>
+</li>
+<li><p>转换为字符串<br> 除了undefined、null值没有toString方法，最后得出的toString就是字符串。<br> String所有类型都会有返回值。<br> var num1=”10”;<br> var num2;<br> var num3=true;<br> var num4=null;<br> var num5 = “one”;<br> alert(String(num1));//“10”<br> alert(String(num2));//“undefined”<br> alert(String(num3));//“true”<br> alert(String(num4));//“null”<br> alert(String(num5));//“one”</p>
+</li>
+</ol>
+<p>Object类型<br>    ECMAScript中的对象就是一组数据与功能的集合。对象可以通过执行new操作符后跟要创建的的对象类型的名称来创建，而创建Object类型的实例并未其添加属性和方法，就可以创建自定义对象。<br>    创建Object()类型的实例可以创建自定义对象，如下：<br>        var object = new Object();<br>    Constructor(建造者)    保存用于创建当前对象的函数，上面的构造函数就是Object();<br>    hasOwnProperty(propertyName)用于检查当前对象属性是否存在。<br>    isPrototypeOf(object)传入对象是否是另一个对象的原型<br>    propertyIsEnumberable(propertyName)当前对象属性是否能使用for-in语句枚举<br>    toLocaleString()返回对象的字符串表示，字符串根据地区对应<br>    toString()返回对象的字符串表示<br>    valueOf()返回布尔值、number、string类型表示</p>
+<pre><code>关于原型链的一些理解：
+原型链的本质是__proto__;
+每个属性都会有__proto__属性。
+
+function a(c){
+    this.b=c;
+    this.d=function(){
+        alert(this.b);
+    }
+}
+a.prototype.test=function(){
+    alert(this.b);
+}
+obj.prototype = function(){
+    obj.prototype=new a(&quot;test&quot;);
+}
+var k= new obj(&quot;test&quot;);
+k.test();//
+</code></pre><p>undefined类型<br>    undefined只有一个值，在使用var声明变量但未对其加以初始化，这个变量的值就是undefined。 </p>
+<p>null类型<br>    null类型只有一个值。从逻辑角度看，null表示一个空对象指针。使用typeod操作符检测null值会返回”object”。在确定变量是保存对象。最好将该变量初始化为null而不是其他值，这样一来，只要直接检查null值就可以知道相对应的变量是否已经保存了一个对象的引用。<br>    如：<br>    if(car != null){<br>        // 对car对象执行某些操作<br>    }<br>    实际上，undefined值是派生自null值的。因此alert(undefined==null) //true<br>    尽管有这种关系，用途不同。只需要在意保存对象的变量还没有真正保存对象，就应该明确的让该变量保存null值，这样做不仅可以体现null作为空对象指针的管理，而且有主与进一步区分null和undefined</p>
+<p>Boolean类型<br>只有两个字面值：true 和false 这两个值与数字值不是一回事，因此true不一定等于1，而false不一定等于0；<br>布尔类型转换 Boolean()方法<br>各种Boolean()类型转换按照以下方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">数据类型	转换为true的值		转换为false的值</span><br><span class="line">Boolean     true				false</span><br><span class="line">string 		非空字符串			空字符串</span><br><span class="line">number 		非0数字				0和NaN</span><br><span class="line">undefined 						转换成false</span><br><span class="line">null 							转换成false</span><br><span class="line">object 		任何对象			null</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>保存类型<br>6种类型 undefined null number string Boolean object到最后就是保存为上面的其中一种<br>object本质上是由一组无序的名值对组成。<br>ECAMScript不支持任何创建自定义类型的机制，所有制最终都是上面的6种之一</p>
+</li>
+<li><p>tyepof操作符 可返回下列某个字符串</p>
+</li>
+<li><p>操作符<br>一元操作符 ++ –<br>位操作符<br>第32位为记录整数的正负，0为整数 1为负数<br>整数直接二进制保存<br>负数 绝对值二进制 取补码(0变成1，1变成0)最后一位加上1 就成了负数<br>ECMAScript中已经对负数二进制以更合乎逻辑的形式展示了出来。</p>
+</li>
+</ol>
+<ul>
+<li>按位非<br>(~)波浪线表示，按位非就是取数值的反码。<br>var num1=15;        //二进制0000 0000 0000 0000 0000 0000 0000 1111<br>var num2= ~num1;    //二进制1111 1111 1111 1111 1111 1111 1111 0000<br>alert(num2);         //输出为-16</li>
+</ul>
+<p>本质：操作数的负值减1</p>
+<ul>
+<li><p>按位与<br>相同为1时合并为1，不同时为1即为0<br>(&amp;)符号表示<br>var result=15 &amp; 3;<br>alert(result);//3</p>
+</li>
+<li><p>按位或<br>只要有一个1时就为1<br>(|)符号表示<br>var result=15 | 3;<br>alert(result);  //15</p>
+</li>
+<li><p>按位异或<br>相同时为0 单独有个1就为1<br>按位异或 操作符由一个插入符号(^)<br>var result = 15 ^ 3;<br>alert(result);  //12</p>
+</li>
+<li><p>左移<br>左移操作符由两个小于号(&lt;&lt;)</p>
+</li>
+<li><p>右移<br>右移操作符由两个大于号(&gt;&gt;)</p>
+</li>
+</ul>
+<h2 id="布尔操作符"><a href="#布尔操作符" class="headerlink" title="布尔操作符"></a>布尔操作符</h2><ol>
+<li><p>逻辑非<br>逻辑非操作符由叹号(!)<br> 例子:<br> alert(!true);    // false<br> alert(!0);            //true<br> alert(!NaN);     //true<br> alert(!””);        //true<br> alert(!”test”);    //false<br> alert(!null);    //true<br> alert(!1235);    //false<br>逻辑非操作符可以将一个值转换成布尔型。类似于Boolean()方法<br>可以用两个逻辑非操作符将值转换成对应的布尔型 var test=!!123;//test=true;</p>
+</li>
+<li><p>逻辑与<br>逻辑与操作符由两个(&amp;&amp;)表示，有两个操作数。<br>var result = true &amp;&amp; false;<br>逻辑：两个操作数都要是true，得出的逻辑与就是true。否则就是false<br>逻辑与操作可以应用于任何类型的操作数，而不仅仅是布尔型，在有一个操作数不是布尔型的情况下，按下面的规则来进行逻辑与操作</p>
+</li>
+</ol>
+<ul>
+<li>第一个为对象，输出后面的操作数</li>
+<li>第二个为对象，只有在前面为true，后面的才能输出</li>
+<li>两个都为对象，则输出后面的</li>
+<li>有一个操作数为null，输出null</li>
+<li>undefined同上</li>
+<li>NaN同上<br>逻辑非为短路操作，如果前面能决定结果，那么就不会对第二个操作数求职。对于逻辑与操作而言，</li>
+</ul>
+<ol>
+<li>逻辑或<br>(||)<br>var result=true || false //true<br>非布尔型规则<br> 第一个为true时，返回true<br> 第一个操作数为对象时，返回第一个对象。<br> 第一个操作数为false时，返回第二个操作数。</li>
+</ol>
+<h2 id="乘性操作符"><a href="#乘性操作符" class="headerlink" title="乘性操作符"></a>乘性操作符</h2><p>乘法 *<br>除法 /<br>求模 &amp;</p>
+<h2 id="加性操作符"><a href="#加性操作符" class="headerlink" title="加性操作符"></a>加性操作符</h2><p>加法操作符+<br>number类型直接相加<br>其他类型通过Number()转换。字符串相连接在一起</p>
+<h2 id="关系操作符"><a href="#关系操作符" class="headerlink" title="关系操作符"></a>关系操作符</h2><p>&lt;、&gt;、= 要看数据类型来进行判断，如果是nember就直接进行比较，如果不是就通过规则进行比较<br>如果两个操作数都是字符串，那么比较两个字符串对应的字符编码值<br>如果一个操作数是数字，那么另一个转换成数字类型进行比较<br>如果是对象，就使用valueOf()进行转换，再通过上面方法进行比较。</p>
+<h2 id="相等操作符"><a href="#相等操作符" class="headerlink" title="相等操作符"></a>相等操作符</h2><p>==  !=<br>相等与不相等 全等于不全等</p>
+<h3 id="相等与不相等-是转换后进行比较。"><a href="#相等与不相等-是转换后进行比较。" class="headerlink" title="相等与不相等 是转换后进行比较。"></a>相等与不相等 是转换后进行比较。</h3><p>一字符 一string 先将string转换成number后进行比较。<br>一对象一不是，调用对象的valueOf()函数转换然后上面方法比较，<br>null与undefined是相同的<br>在比较相等性之前，不能将null与undefined转换成其他任何职<br>如果有一个数是NaN。则相等操作符返回false，不相等操作符返回true。<br>两个都是对象，如果两个对象指向一个，那么相等操作符返回true，否则。返回false</p>
+<h3 id="全等和不全等是不转换就进行比较"><a href="#全等和不全等是不转换就进行比较" class="headerlink" title="全等和不全等是不转换就进行比较"></a>全等和不全等是不转换就进行比较</h3><p>=== !==</p>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h3 id="do-while-while-if-for循环语句"><a href="#do-while-while-if-for循环语句" class="headerlink" title="do-while while if for循环语句"></a>do-while while if for循环语句</h3><p>for-in语句可以枚举对象中所有属性<br>null和undefined不能执行该循环体，所以需使用propertyIsEnumberable(propertyName)来检测该对象属性能否被枚举</p>
+<h3 id="for-in语法"><a href="#for-in语法" class="headerlink" title="for-in语法"></a>for-in语法</h3><p>for(property in expression)statement<br>实例<br>for(var propName in window){<br>    document.write(propName);<br>}<br>这个例子，使用for-in循环将window对象中所有的属性都输出出来<br>但是如果要迭代对象的数据类型是null、undefined for-in语句会停止执行，为保持最大限度的兼容性，确定检测对象的值不是null或undefined</p>
+<h3 id="label语句"><a href="#label语句" class="headerlink" title="label语句"></a>label语句</h3><p>使用lable语句可以在代码中添加标签，以便后面使用。语法<br>label:statement<br>实例<br>var count=19;<br>state:for(var i=0;i&lt;count;i++){<br>    alert(i);<br>}<br>这个例子中定义的start标签可以在将来由break或continue语句引用。加标签的语句一般都要与for语句一起使用</p>
+<h3 id="break与continue语句"><a href="#break与continue语句" class="headerlink" title="break与continue语句"></a>break与continue语句</h3><p>用于精确控制循环代码的执行。break会直接退出循环，强制执行后面循环语句<br>continue用于立即退出循环，进行新的一轮循环</p>
+<h3 id="with语句"><a href="#with语句" class="headerlink" title="with语句"></a>with语句</h3><p>with语句的作用是将代码的作用域设置到一个特定的对象中。<br>语法<br>with(expression) statment;<br>定义with语句的目的是为了简化多次编写同一个对象的工作。<br>实例<br>var gs=location.serach.substring(1);<br>var hostName=location.hostname;<br>var url=location.href;</p>
+<p>上面的几行代码都包含了location对象，如果使用with语句，可以吧上面的代码改写成如下所示：<br>with(location){<br>    var gs=search.substring(1);<br>    var hostName=hostname;<br>    var url=location.href;<br>}<br>使用with关联location，意味着代码块内部，每个变量都会被认为是一个局部变量，而如果在局部环境中找不到该变量的定义，就会查询location对象中是否有同名的属性，将该属性作为变量的值。<br>严格模式下将会认为语法错误。with不能用在严格模式下。</p>
+<p>switch语句<br>与其他语言类似，但有一点：可以使用出number以外的类型 string、boolean<br>switch (i){<br>    case 30:<br>        alert(“30”);<br>        break;<br>    case 40:<br>        alert(“40”);<br>        break;<br>}<br>switch(true){<br>    case num&lt;0:<br>        alert(“小于0”);<br>        break;<br>    case num&gt;0 &amp;&amp; num&lt;20:<br>        alert(“大于0小于20”);<br>        break;<br>    case num&gt;=20 &amp;&amp; num&lt;=50:<br>        alert(“大于20小于50”);<br>        break;<br>    default:<br>        alert(“大于50”);<br>}</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><pre><code>函数对于任何语言来说都是一个核心的概念，通过函数可以封装任意多条语句，而且可以在任何地方，任何时候调用执行。ECMAScript中的函数使用function关键字来声明，后更一组参数以及函数体。函数的基本语法如下所示：
+function functionName(arg0,arg1,...,argN){
+    statements
+}
+以下是一个函数实例
+function sayHi(name,message){
+    alert(&quot;Hello&quot;+name+&quot;,&quot;+message);
+}
+
+调用该函数
+sayHi(&quot;Kevin&quot;+how art you today);
+
+通过ruturn返回值。位于return后面的值永远不会执行。
+可以直接return直接停止返回undefined 
+推荐做法是让函数始终返回一个值，要么永远都不要返回值。否则，如果函数有时候返回，有时候不返回，会给吊事代码带来不便
+严格模式下对函数有一些限制：
+不能把函数命名为eval或arguments;
+不能把参数命名为eval或arguments;
+不能出现两个命名参数同名的情况;
+
+重点：js函数中不介意传进多少参数
+原因：ECMAScript中的参数是在内部用一个数组来表示的，函数接受的的始终都是这个菽粟，而不关心数组中包含哪些参数(如果有参数的话)。如果这个数组红不包含任何元素，无所谓;如果半酣多个元素，也没问题。实际上，在函数体可以通过arguments对象来访问这个参数数组，从而获取床底给函数的每一个参数，其实，arguments对象知识与数组类似(它并不是Array的实例)，因为可以使用方括号语法访问它的每一个元素[](即第一个元素是arguments[0]第二个元素是arguments[1])使用length属性来确定传递进来多少个参数。
+</code></pre><h3 id="没有重载"><a href="#没有重载" class="headerlink" title="没有重载"></a>没有重载</h3><p>正因为上面所述的原因，所以ECMAScript函数不能像传统意义上的重载。就是不能像如Java那样可以为一个函数定义两个定义，只要两个定义的签名(接受的参数的类型和数量)不同即可。ECMAScript没有签名，因为其参数是由包含零或者多个值的数组来表示的，而没有函数签名，真正的重载是不能做到的。<br>如果ECMAScript中定义了两个名字相同的函数，则名字只属于后定义的函数。<br>实例：<br>function addNumber(num){<br>    return num+100;<br>}<br>function addNumber(num){<br>    return num+200;<br>}<br>alert(addNumber(100)); //300<br>后定义的函数覆盖了先定义的函数，因此当在最后一刚代码中调用这个函数时，返回的结果就是300</p>
+<p>简要总结ECMAScript基本的要素：</p>
+<ul>
+<li>ECMAScript中的基本数据undefined、null、boolean、string、number、object</li>
+<li>没有为浮点数值定义不同的数据类型，Number类型可用于表示所有值</li>
+<li>有一种复杂的数据类型，object类型，该类型是这门语言中所有对象的基础类型</li>
+<li>严格模式为这门语言中容易出错的地方施加了限制</li>
+<li>ECMAScript从其他语言中借鉴了很多流控制语句、例如 if 、for、switch、</li>
+<li>无须指定函数的返回值，因为任何ECMAScript函数都可以在任何时候返回任何职</li>
+<li>位指定返回值的函数返回的是一个特殊的undefined值</li>
+<li>ECMAScript中没有函数签名的概念，因为其函数参数是一一个包含零或多个值的数组的性质传递的。</li>
+<li>可以向ECMAScript函数传递任意数量的参数，并且可以通过arguments对象来访问这些参数</li>
+<li>由于不存在函数签名的特性，ECMAScript函数并不能重载。</li>
+</ul>
+<h1 id="变量、作用域和内存问题"><a href="#变量、作用域和内存问题" class="headerlink" title="变量、作用域和内存问题"></a>变量、作用域和内存问题</h1><p>基本类型和引用类型<br>基本类型undefined、null、string、number、boolean<br>引用类型object<br>基本类型复制对象是直接复制副本，两个是完全独立的<br>引用类型是复制一个指针，而这个指针指向存储在堆中的一个对象，复制操作结束后，两个变量实际上将一用同一个对象。因此，改变其中一个变量，就会影响另一个变量<br>var obj1=new Object();<br>var obj2=obj1;<br>obj.name=”ke”;<br>alert(obj1.name); //ke</p>
+<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><p>ECMAScript中所有函数的参数都是按值传递的。函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样。基本类型值的床底如同基本类型变量的复制一样，而引用类型值的传递。则图通引用类型变量的复制一样。有不少开发人员在这一点上可能会感到困惑。因为访问变量有按值和按引用两种防止，而参数只能按值传递。<br>向参数传递基本类型的值时，被传递的值会被复制给一个局部变量(即命名参数，或者用ECMAScript的概念来说，就是arguments对象中的一个元素。) 在想参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量。因此这个局部变量的变化会反映在函数的外部。<br>function addTen(num){<br>    num+=10;<br>    return num;<br>}</p>
+<p>function addTen(obj){<br>    obj.name=”kevin”;</p>
+<p>}<br>var kp=new Object();<br>addTen(kp);<br>alert(kp.name);        //kevin<br>以上代码上创建一个对象，并将其保存在变化person中。然后，这个对象被传递到setName()函数中之后被复制到obj，在这个函数内部，obj和person引用的是同一个对象，换句话说，即使这个对象是按值传递的，obj也会按引用来访问同一个对象，于是，当在函数内部为obj添加name属性后，函数外部的person也将有所反应。因为person指向的对象在堆内存中只有一个，而且是全局对象，有很多开发人员错误的认为：在局部作用域中修改的对象会在全局作用域中反应出来，就说明参数是按引用传递的。为了证明对象是按值传递的<br>function setName(){<br>    obj.name=”kevin”;<br>    obj=new Object();<br>    obj.name=”Greg”;<br>}</p>
+<p>var person = new Object();<br>setName(person);<br>alert(person.name);    //“kevin”<br>在把person传递给setName()后，其name属性被设置成”kevin”。然后，又将一个新对象赋值给变量obj，同时将其值name属性设置为”Greg”，如果person是按引用传递的，那么person就会自动被修改为指向其name属性值为”Greg”的新对象。但是，当接下来再访问person.name时，显示的值仍然是”kevin”。这说明即使在函数内部修改了参数的值，但原始的引用仍然保持未变。实际上，当函数内部重写obj时。这个变量应用的就是一个局部对象那个了，而这个局部对象会在函数执行完毕后立即被销毁。</p>
+<h3 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h3><p>想知道是什么类型的对象。为此，ECMAScript提供了instanceof操作符。<br>语法：<br>result= variable instanceof constructor<br>alert(person instanceof Object);    //    变量person是Object吗？<br>alert()</p>
 
       
     </div>
@@ -595,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量类型"><span class="nav-number">1.1.</span> <span class="nav-text">变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔操作符"><span class="nav-number">1.2.</span> <span class="nav-text">布尔操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘性操作符"><span class="nav-number">1.3.</span> <span class="nav-text">乘性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加性操作符"><span class="nav-number">1.4.</span> <span class="nav-text">加性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系操作符"><span class="nav-number">1.5.</span> <span class="nav-text">关系操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相等操作符"><span class="nav-number">1.6.</span> <span class="nav-text">相等操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相等与不相等-是转换后进行比较。"><span class="nav-number">1.6.1.</span> <span class="nav-text">相等与不相等 是转换后进行比较。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全等和不全等是不转换就进行比较"><span class="nav-number">1.6.2.</span> <span class="nav-text">全等和不全等是不转换就进行比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">1.7.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#do-while-while-if-for循环语句"><span class="nav-number">1.7.1.</span> <span class="nav-text">do-while while if for循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in语法"><span class="nav-number">1.7.2.</span> <span class="nav-text">for-in语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#label语句"><span class="nav-number">1.7.3.</span> <span class="nav-text">label语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break与continue语句"><span class="nav-number">1.7.4.</span> <span class="nav-text">break与continue语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with语句"><span class="nav-number">1.7.5.</span> <span class="nav-text">with语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有重载"><span class="nav-number">1.8.1.</span> <span class="nav-text">没有重载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量、作用域和内存问题"><span class="nav-number">2.</span> <span class="nav-text">变量、作用域和内存问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传递参数"><span class="nav-number">2.1.</span> <span class="nav-text">传递参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">检测类型</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
