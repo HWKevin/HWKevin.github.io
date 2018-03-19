@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="Hello Wrold" />
+  <meta name="keywords" content="javaScript," />
 
 
 
@@ -83,13 +83,14 @@
 
 
 <meta name="description" content="javascript有三部分组成核心ECMAscript文档对象模型DOM (Document Object Model) 提供访问和操作网页内容的方法和借口浏览器对象模型BOM (Browser Object Model) 提供与浏览器交互的方法与借口 组成部分：语法、类型、语句、关键字、保留字、操作符、对象">
+<meta name="keywords" content="javaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【javaScript】学习笔记">
 <meta property="og:url" content="http://yoursite.com/2018/03/14/【javaScript】学习笔记/index.html">
 <meta property="og:site_name" content="HWKevin&#39;s Blog">
 <meta property="og:description" content="javascript有三部分组成核心ECMAscript文档对象模型DOM (Document Object Model) 提供访问和操作网页内容的方法和借口浏览器对象模型BOM (Browser Object Model) 提供与浏览器交互的方法与借口 组成部分：语法、类型、语句、关键字、保留字、操作符、对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-17T14:26:28.532Z">
+<meta property="og:updated_time" content="2018-03-19T10:32:31.361Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【javaScript】学习笔记">
 <meta name="twitter:description" content="javascript有三部分组成核心ECMAscript文档对象模型DOM (Document Object Model) 提供访问和操作网页内容的方法和借口浏览器对象模型BOM (Browser Object Model) 提供与浏览器交互的方法与借口 组成部分：语法、类型、语句、关键字、保留字、操作符、对象">
@@ -400,7 +401,7 @@
 </li>
 <li><p>严格模式<br>语法：<code>*use strict*</code></p>
 </li>
-<li><p>语句<br>每行结尾必须要带分号，最好还是在{}内进行编写</p>
+<li><p>语句<br>每行结尾必须要带分号，最好还是在{}内进行编写(代码块)</p>
 </li>
 <li><p>关键字和保留字</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ECMAscript的全部关键字</span><br><span class="line">break do instanceof typeof case else new var catch finally return void continue for switch while debugger function this with default if throw delete in try</span><br><span class="line"></span><br><span class="line">保留字</span><br><span class="line">abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws const goto private transient debugger implements protected volatile double import public</span><br><span class="line"></span><br><span class="line">第5版在非严格模式下运行时的保留字缩减为</span><br><span class="line">class enum extends super conset export import </span><br><span class="line">在严格模式下，第5班对以下保留字施加限制</span><br><span class="line">implements package public interface private static let protected yield</span><br></pre></td></tr></table></figure>
@@ -409,7 +410,7 @@
 </li>
 </ol>
 <h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>Number类型<br>    浮点数值</p>
-<pre><code>    对于极大或绩效的数值，可以用e表示法
+<pre><code>    对于极大或极小的数值，可以用e表示法
     var floatNum= 3.1415e7;//等于3.1415乘以10
     实际含义就是3.1415乘以10的7次方。
     负电数值的最高精度是17位小数，但在进行算术计算时的精确度远远不如整数。例如0.1加0.2的结果不是0.3 而是0.30000000000000004.这个小小的舍入误差会导致无法测试特定的浮点数值。
@@ -453,7 +454,7 @@ undefined -&gt; 返回NaN
 </code></pre><p>字符串类型 string<br>可用””或者’’两种语法形式<br>var testString = “test”;<br>var testString = ‘test’;</p>
 <ol>
 <li>字符串字面量<br>String包含一些特殊的字符字面量，转义字符。用于表示非打印字符，或者具有其他用途的字符。这些字符字面量如下表<br>\n换行 \t制表 \b空格 \r回车 \f \’ * \” \xnn \unnn </li>
-<li><p>字符串的特点<br> 创建后不能更改，其值不能盖板边，要改变某个变量保存的字符串，只能销毁原本的字符串，然后在用另一个包含新值的字符串填充该变量<br> var lang= “hello”;<br> var lang=lang+”world”;//lang为helloworld</p>
+<li><p>字符串的特点<br> 创建后不能更改，其值不能盖改变，要改变某个变量保存的字符串，只能销毁原本的字符串，然后在用另一个包含新值的字符串填充该变量<br> var lang= “hello”;<br> var lang=lang+”world”;//lang为helloworld</p>
 </li>
 <li><p>转换为字符串<br> 除了undefined、null值没有toString方法，最后得出的toString就是字符串。<br> String所有类型都会有返回值。<br> var num1=”10”;<br> var num2;<br> var num3=true;<br> var num4=null;<br> var num5 = “one”;<br> alert(String(num1));//“10”<br> alert(String(num2));//“undefined”<br> alert(String(num3));//“true”<br> alert(String(num4));//“null”<br> alert(String(num5));//“one”</p>
 </li>
@@ -525,7 +526,7 @@ k.test();//
 <h2 id="加性操作符"><a href="#加性操作符" class="headerlink" title="加性操作符"></a>加性操作符</h2><p>加法操作符+<br>number类型直接相加<br>其他类型通过Number()转换。字符串相连接在一起</p>
 <h2 id="关系操作符"><a href="#关系操作符" class="headerlink" title="关系操作符"></a>关系操作符</h2><p>&lt;、&gt;、= 要看数据类型来进行判断，如果是nember就直接进行比较，如果不是就通过规则进行比较<br>如果两个操作数都是字符串，那么比较两个字符串对应的字符编码值<br>如果一个操作数是数字，那么另一个转换成数字类型进行比较<br>如果是对象，就使用valueOf()进行转换，再通过上面方法进行比较。</p>
 <h2 id="相等操作符"><a href="#相等操作符" class="headerlink" title="相等操作符"></a>相等操作符</h2><p>==  !=<br>相等与不相等 全等于不全等</p>
-<h3 id="相等与不相等-是转换后进行比较。"><a href="#相等与不相等-是转换后进行比较。" class="headerlink" title="相等与不相等 是转换后进行比较。"></a>相等与不相等 是转换后进行比较。</h3><p>一字符 一string 先将string转换成number后进行比较。<br>一对象一不是，调用对象的valueOf()函数转换然后上面方法比较，<br>null与undefined是相同的<br>在比较相等性之前，不能将null与undefined转换成其他任何职<br>如果有一个数是NaN。则相等操作符返回false，不相等操作符返回true。<br>两个都是对象，如果两个对象指向一个，那么相等操作符返回true，否则。返回false</p>
+<h3 id="相等与不相等-是转换后进行比较。"><a href="#相等与不相等-是转换后进行比较。" class="headerlink" title="相等与不相等 是转换后进行比较。"></a>相等与不相等 是转换后进行比较。</h3><p>如果有一个操作数是布尔值，则在比较相等性之前现将其转换成数值——false转换为0.而true转换成1<br>如果一个操作数是字符串，另一个操作数是数值，在比较相等性之前现将字符串转换成数值。<br>如果一个操作数是对象，另一个操作数不是，则调用对象的valueOf()方法， 用的到的基本类型之按照前面的规则进行比较。<br>一字符 一string 先将string转换成number后进行比较。<br>一对象一不是，调用对象的valueOf()函数转换然后上面方法比较，<br>null与undefined是相同的<br>在比较相等性之前，不能将null与undefined转换成其他任何职<br>如果有一个数是NaN。则相等操作符返回false，不相等操作符返回true。<br>两个都是对象，如果两个对象指向一个，那么相等操作符返回true，否则。返回false</p>
 <h3 id="全等和不全等是不转换就进行比较"><a href="#全等和不全等是不转换就进行比较" class="headerlink" title="全等和不全等是不转换就进行比较"></a>全等和不全等是不转换就进行比较</h3><p>=== !==</p>
 <h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h3 id="do-while-while-if-for循环语句"><a href="#do-while-while-if-for循环语句" class="headerlink" title="do-while while if for循环语句"></a>do-while while if for循环语句</h3><p>for-in语句可以枚举对象中所有属性<br>null和undefined不能执行该循环体，所以需使用propertyIsEnumberable(propertyName)来检测该对象属性能否被枚举</p>
 <h3 id="for-in语法"><a href="#for-in语法" class="headerlink" title="for-in语法"></a>for-in语法</h3><p>for(property in expression)statement<br>实例<br>for(var propName in window){<br>    document.write(propName);<br>}<br>这个例子，使用for-in循环将window对象中所有的属性都输出出来<br>但是如果要迭代对象的数据类型是null、undefined for-in语句会停止执行，为保持最大限度的兼容性，确定检测对象的值不是null或undefined</p>
@@ -571,11 +572,83 @@ sayHi(&quot;Kevin&quot;+how art you today);
 <li>由于不存在函数签名的特性，ECMAScript函数并不能重载。</li>
 </ul>
 <h1 id="变量、作用域和内存问题"><a href="#变量、作用域和内存问题" class="headerlink" title="变量、作用域和内存问题"></a>变量、作用域和内存问题</h1><p>基本类型和引用类型<br>基本类型undefined、null、string、number、boolean<br>引用类型object<br>基本类型复制对象是直接复制副本，两个是完全独立的<br>引用类型是复制一个指针，而这个指针指向存储在堆中的一个对象，复制操作结束后，两个变量实际上将一用同一个对象。因此，改变其中一个变量，就会影响另一个变量<br>var obj1=new Object();<br>var obj2=obj1;<br>obj.name=”ke”;<br>alert(obj1.name); //ke</p>
-<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><p>ECMAScript中所有函数的参数都是按值传递的。函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样。基本类型值的床底如同基本类型变量的复制一样，而引用类型值的传递。则图通引用类型变量的复制一样。有不少开发人员在这一点上可能会感到困惑。因为访问变量有按值和按引用两种防止，而参数只能按值传递。<br>向参数传递基本类型的值时，被传递的值会被复制给一个局部变量(即命名参数，或者用ECMAScript的概念来说，就是arguments对象中的一个元素。) 在想参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量。因此这个局部变量的变化会反映在函数的外部。<br>function addTen(num){<br>    num+=10;<br>    return num;<br>}</p>
+<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><p>ECMAScript中所有函数的参数都是按值传递的。函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样。基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递。则不同引用类型变量的复制一样。有不少开发人员在这一点上可能会感到困惑。因为访问变量有按值和按引用两种方式，而参数只能按值传递。<br>向参数传递基本类型的值时，被传递的值会被复制给一个局部变量(即命名参数，或者用ECMAScript的概念来说，就是arguments对象中的一个元素。) 在想参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量。因此这个局部变量的变化会反映在函数的外部。<br>function addTen(num){<br>    num+=10;<br>    return num;<br>}</p>
 <p>function addTen(obj){<br>    obj.name=”kevin”;</p>
 <p>}<br>var kp=new Object();<br>addTen(kp);<br>alert(kp.name);        //kevin<br>以上代码上创建一个对象，并将其保存在变化person中。然后，这个对象被传递到setName()函数中之后被复制到obj，在这个函数内部，obj和person引用的是同一个对象，换句话说，即使这个对象是按值传递的，obj也会按引用来访问同一个对象，于是，当在函数内部为obj添加name属性后，函数外部的person也将有所反应。因为person指向的对象在堆内存中只有一个，而且是全局对象，有很多开发人员错误的认为：在局部作用域中修改的对象会在全局作用域中反应出来，就说明参数是按引用传递的。为了证明对象是按值传递的<br>function setName(){<br>    obj.name=”kevin”;<br>    obj=new Object();<br>    obj.name=”Greg”;<br>}</p>
 <p>var person = new Object();<br>setName(person);<br>alert(person.name);    //“kevin”<br>在把person传递给setName()后，其name属性被设置成”kevin”。然后，又将一个新对象赋值给变量obj，同时将其值name属性设置为”Greg”，如果person是按引用传递的，那么person就会自动被修改为指向其name属性值为”Greg”的新对象。但是，当接下来再访问person.name时，显示的值仍然是”kevin”。这说明即使在函数内部修改了参数的值，但原始的引用仍然保持未变。实际上，当函数内部重写obj时。这个变量应用的就是一个局部对象那个了，而这个局部对象会在函数执行完毕后立即被销毁。</p>
-<h3 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h3><p>想知道是什么类型的对象。为此，ECMAScript提供了instanceof操作符。<br>语法：<br>result= variable instanceof constructor<br>alert(person instanceof Object);    //    变量person是Object吗？<br>alert()</p>
+<h3 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h3><p>想知道是什么类型的对象。为此，ECMAScript提供了instanceof操作符。<br>语法：<br>result= variable instanceof constructor<br>alert(person instanceof Object);    //    变量person是Object吗？<br>alert(colors instanceof Array));    //    变量color是Array吗？<br>alert(pattern instanceof RegExp);    //     变量pattern是RegExp吗？</p>
+<p>根据规定，国有引用类型的值都是Object的实例，因此，在检测一个引用类型之和Object构造函数时，instanceof操作符始终会返回true。当然，如果使用instanceof操作符检测基本类型的值，则该操作符始终会返回false。因为基本类型不是对象。</p>
+<h3 id="执行环境与作用域"><a href="#执行环境与作用域" class="headerlink" title="执行环境与作用域"></a>执行环境与作用域</h3><p>执行环境是javaScript最为重要的一个概念，执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象(variabel object)。环境中定义的所有变量和函数都保存在这个变量对象中。(window对象)为全局执行环境。<br>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的换金就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出。<br>带代码在一个环境中执行时，会创建变量对象的一个作用域链。作用域链的用途模式保证对执行环境有权访问的所欲变量和函数的有序访问。</p>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><pre><code>垃圾收集机制的原理：找到不再继续使用的变量，然后释放其占用的内存，为此，垃圾收集器会按照固定的时间间隔(或代码执行中预定的实际时间)，周期性地执行这一操作。
+</code></pre><p>两个清楚策略：标记清除<br>常用的立即收集方式。当变量进入环境，就将这个变量标记为”进入环境”。从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要执行流进入相应的环境，就可能会用到它们，而当变量离开环境时，则将其标记为”离开环境”。<br>可以使用任何方式来标记变量，比如，可以通过翻转，某个特殊的位来记录一个变量何时进入了环境，或者使用一个”进入环境的”变量列表及一个”离开环境的”变量列表来跟踪哪个变量发生了变化，说到底，若何标记标量其实是并不重要，关键在于采取什么策略。<br>垃圾收集器在运行的时候会给存储在内存中的所有变量加上标记(当然，可以使用任何标记方式)。然后，它会去掉环境中的变量以及环境中的变量引用的变量的标记。而在此之后再被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量了，最后，垃圾收集器完成内存清除工作，销毁那些带有标记的值并回收它们所占用的内存空间。</p>
+<h3 id="管理内存"><a href="#管理内存" class="headerlink" title="管理内存"></a>管理内存</h3><p>function createPerson(name){<br>    var localPerson = new Object();<br>    localPerson.name=name;<br>    return localPerson;<br>}<br>var globalPerson=createPerson(“keivn”);<br>//使用后手动将globalPerson的引用解除</p>
+<p>globalPerson=null;<br>这个叫做解除引用，解除一个值的引用并不意味着自动回收该值所占用的内存，真正的作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。</p>
+<p>小结：<br>JavaScript变量可以用来保存两种类型的值：基本类型和引用类型。基本类型有5种：undefined、null、<br>number、string、boolean。引用类型就只有一种：object类型。有一下特点：</p>
+<ul>
+<li>基本类型值在内存中占据固定大小的空间，因此被保存在栈内存中</li>
+<li>从一个变量向另一变量复制基本类型的值，会创建这个值的一个副本</li>
+<li>引用类型的值是对象，保存在栈内存中</li>
+<li>包含引用类型值的变量实际上包含的并不是对象本身，而是指向对象的一个指针。</li>
+<li>从一个变量向另一个变量复制引用类型的值， 复制的其实是指针，因此两个变量最终都指向同一个对象</li>
+<li>确定一个值是哪种基本类型可以使用typeof操作符，而确定一个值是哪种引用类型可以使用instanceof操作符。</li>
+</ul>
+<p>所有变量(包括基本类型和引用类型)都存在一个执行环境(也称为作用域)当中，这个执行环境决定了变量的生命周期，以及哪一部分代码可以访问其中的变量。一下是关于执行环境的加点总结：</p>
+<ul>
+<li>执行环境有全局执行环境(也称全局环境)和函数执行环境之分</li>
+<li>每次进入一个新执行环境，都会创建一个用于搜索变量和函数的作用域链</li>
+<li>函数的局部环境不仅有权访问函数作用域于中的变量，而且有权访问其包括(父)环境，乃至全局环境</li>
+<li>全局环境只能访问在全局环境中定义的变量和函数，而不能直接访问局部环境中的任何数据</li>
+<li>变量的执行环境有助于确定应该何时释放内存</li>
+</ul>
+<p>JavaScript是一门具有自动垃圾收集机制的编程语言。<br>总结：</p>
+<ul>
+<li>离开作用域的值被自动标记为可以回收，因此将在啊垃圾收集期间被删除</li>
+<li>“标记清除”是目前主流的垃圾收集算法，这种算法的思想是给当前不使用的值加上标记，然后再回收其内存</li>
+<li>另一种垃圾收集算法是”引用计数”，这种算法的思想是跟踪记录所有值被引用的次数。JavaScript引擎幕墙都不再使用这种算法；但在IE访问非原生JavaScript(DOM等元素)时，这种算法仍然可能会导致出现问题</li>
+<li>当代码中存在循环引用现象时，”引用计数”算法就会导致问题</li>
+<li>解除变量的引用不仅有助于消除循环引用现象，而且对垃圾收集也有好处。为了确保有效地回收内存，应该及时解除不再使用的全局对象、全局对象属性以及循环引用变量的引用</li>
+</ul>
+<h1 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h1><p>内容：使用对象、创建并操作数组、使用基本的JavaScript类型、使用基本类型的基本包装类型<br>引用类型的值(对象)是引用类型的一个实例，引用类型是一种数据结构，用于将数据和功能组织在一起，它通常被称为类，但这种称呼并不太对。引用类型有时候也被称为对象定义。</p>
+<p>Object类型<br>两种创建方法<br>第一种是使用new操作符后跟Object构造函数。<br>var person= new Object();<br>person.name=”jjk”;<br>person.age=23;<br>另一种是使用对象字面量<br>var person={<br>    name : “jjk”,<br>    age : 21<br>};<br>在对象字面量里，使用冒号后接这个属性的值，使用逗号分隔两个变量。最后一个变量不能使用逗号分隔。<br>在使用对象字面量语法时，属性名也可以使用字符串<br>var person={<br>    “name”:”jjk”;<br>    “age”:”12”;<br>    5:ture;<br>}<br>这个例子会创建一个对象，包含三个属性：name、age、5。这里的数值属性名会自动转换为字符串<br>使用对象可以留空花括号，则可以定义只包含默认属性和方法的对象<br>var person={};<br>person.name=”jjk”;<br>person.age=29;</p>
+<p>一般来说，访问对象属性时使用的都是点表示法，不过js中也可以使用方括号表示法来访问对象的属性。在使用方括号语法时，应该将要访问的属性以字符串的形式放在方括号中<br>persion.name;<br>persion[“name”];</p>
+<p>Array类型：<br>创建数组的基本方式有两种。第一种是使用Array构造函数<br>var colors=new Array();</p>
+<p>var colors=new Array(20);    //创建length值为20的数组<br>var colors=new Array(“blue”,”black”);    //    创建包含2个字符串值的数组<br>可以省略new操作符<br>var colors=Array();</p>
+<p>第二种基本方式是使用数组字面量表示法。数组字面量由一堆包含数组项的方括号表示，多个数组项之间以逗号隔开。<br>var colors=[“red”,”blue”,”green”];<br>var names=[];</p>
+<p>数组的length属性很有特点——它不是只读的，因此，通过设置这个属性，可以从数组额末尾移除项或向数组中添加新项<br>var colors=[“red”,”blue”,”green”];    //    创建一个包含3个字符串的数组<br>colors.length=2;<br>alert(color[2]);    //undefined</p>
+<p>利用length属性直接在数组末尾添加新项<br>var colors=[“red”,”green”,”black”];<br>colors[colors.length]=”yellow”;<br>alert(colors.length);//4</p>
+<p>当把一个值放在超出数组大小的位置上，数组会重新计算其长度，即长度值等于最后一项的索引加1<br>var colors=[1,2,3];<br>var color[99]=9009;<br>alert(colors.length);//100  4-99都为undefined</p>
+<h3 id="检测数组"><a href="#检测数组" class="headerlink" title="检测数组"></a>检测数组</h3><p>instanceof操作符的问题<br>if(value instanceof Array){<br>    //对数组执行某些操作<br>}</p>
+<p>instanceof操作符的问题在于，它假定单一的全局执行环境，如果网页中包含多个框架，那实际上就存在两个以上不同的全局执行环境，从而存在两个以上不同版本的Array构造函数，如果从一个框架向另一个框架传入数组，那么传入的数组与在第二个框架中原生创建的数组分别具有各自不同的构造函数。<br>新增Array.isArray()方法。这个方法的目的是最终确定某个值到底是不是数组，而不管它是在哪个全局执行环境中创建的。<br>if(Array.isArray(value)){<br>    //对数组执行某些操作<br>}</p>
+<p>操作方法：<br>栈方法：push() pop() //push() 和pop()都是返回数组长度的<br>队列shift()队头取出 push()队尾插入    //shift() unshift() 都是返回数组长度的<br>unshift()队头插入 pop()对尾排出<br>重排序reverse() sort() -&gt;使用方法<br>var testSort=[3,1,2,2,7,4,5];<br>function addSort(a,b){<br>    return a-b;    //返回负值即a &lt; b; 返回0即相等 返回正值即a&gt;b;<br>}<br>alert(testSort.sort(addSort));    //1,2,2,3,4,5,7<br>alert(testSort.reverse());    //翻转数组<br>function ()<br>var obj=[“black”,”blue”,]<br>concat()基于当前数组中所有项创建一个新数组<br>var testConcat=obj.concat(“sb”,”yellow”);    //testConcat为 black、blue、sb、yellow<br>slice()能够基于当前数组中的一或多个项创建一个新数组。slice()方法可以接受一个或两个参数，即要返回项的起始和结束位置。<br>var test1Sort=testSort.slice(1,4);    //复制给test1Sort的值为第二个到第四个 1,2,3<br>slice()里面可以使用负数，与整数相同，意思就是不会取后面数值的那位数，是在此之前的。<br>如果结束位置小于起始位置，则返回空数组<br>splice()方法，主要用途是向数组的中部插入项<br>删除：可以删除任意数量项，两个参数，要删除额的第一项位置和要删除的项数(直接在数组上执行该函数，可以将这数组区间赋值给其他数组)<br>插入: 指定位置插入任意数量的项，只需提供3个参数：起始位置、0（要删除的项数）要插入的项数<br>替换：splice(0,2,”blue”,”black”);将原有前两个删除，替换成blue和black</p>
+<p>位置方法：数组实例添加两个位置方法:indexOf()和lastIndexOf()<br>都接受两个参数：要查找的项、起点位置索引<br>var number=[1,2,3,4,5,4,3,2,1];<br>console.log(number.indexOf(4));    //3<br>console.log(number.lastIndexOf(4));    //5<br>console.log(number.indexOf(4,4));    //5<br>console.log(number.lastIndexOf(4,3));    //4<br>返回的是在数组中的位置</p>
+<p>5个迭代方法：每个方法都接受两个参数：要在每一项运行的函数和(可选的)运行该函数的作用域对象————影响this值。传入这些方法中的函数接受三个参数：数组项的值、该项在数组中的位置和数组对象本身。</p>
+<ul>
+<li>every()：对数组中的每一项运行给定函数，如果该函数对每一项都返回true,则返回true</li>
+<li>filter():运行给定函数，返回true的项组成的数组</li>
+<li>forEach()：对数组中的每一项都运行给定函数，没有返回值，本质上与使用for循环迭代数组一样</li>
+<li>map()：对数组中每一项运行给定函数。返回每次函数调用的结果组成的数组</li>
+<li>some():对数组的每一项运行给定函数，如果该函数对任一项返回true，则返回true<br>以上方法都不会修改原数组包含的值<br>var number=[1,2,3,4,5,4,3,2,1];<br>  var everyResult=number.every(function(item,index,array){<pre><code>console.log(item);    //1
+console.log(index);    //0
+console.log(array);    //[1,2,3,4,5,4,3,2,1]
+return(item&gt;2);    //false
+</code></pre>  })<br>  console.log(everyResult);    //false<br>var someResult=number.some(function(item,index,array){<br>  return (item&gt;2);    //true<br>})<br>forEach\map\every\some\filter</li>
+</ul>
+<p>缩小方法：reduce()和reduceRight()。两个方法都会迭代数组的所有项，然后返回一个最终返回的值。要在新的变量上做不会改变原有变量的。<br>reduce()方法从数组的第一项开始，逐个遍历到最后，而reduceRight()从数组的最后一项开始，向前遍历到第一项<br>都接收两个参数：一个在每一项上调用的函数和(可选的)作为缩小基础的初始值。<br>上诉函数接受4个值：前一个值、当前值、项的索引、数组对象<br>这个函数返回的任何值都会作为第一个参数自动传给下一项，第一次迭代发生在数组的第二项上，因此第一个参数是数组的第一项，第二个参数就是数组的第二项<br>将values数组中所有值相加<br>var values=[1,2,3,4,5,4,3,2,1];<br>var sum=values.reduce(function(prev,cur,index,array){<br>    return prev+cur;<br>});<br>var sumRight=values.reduceRight(function(prev,cur,index,array){<br>    retrun prev+cur;<br>})<br>console.log(sum);    //25<br>console.log(sumRight);    //25</p>
+<h2 id="Date类型"><a href="#Date类型" class="headerlink" title="Date类型"></a>Date类型</h2><p>两种方法：<br>date.parse() dete.UTC();</p>
+<p>日期格式化方法<br>Date类型有一些专门用于将日期格式化为字符串的方法<br>toDateString()–以特定于实现的格式显示星期几、月、日、年<br>toTimeString()–格式显示时、分、秒和地区<br>toLocaleDateString()–格式显示地区星期几、月、日和年<br>toLocaleTimeString()–实现格式显示时、分、秒<br>toUTCString()–特定于实现的格式完整的UTC日期<br>toLocaleString()和toString()方法一样，以上字符串格式方法的输出也是浏览器而异的，因此没有哪一个方法能够用来在用户界面中显示一致的日期信息</p>
+<h2 id="RegExp类型"><a href="#RegExp类型" class="headerlink" title="RegExp类型"></a>RegExp类型</h2><p>ECMAScript通过RegExp类型支持正则表达式<br>语法：<br>var expression =/pattern/ flags;<br>其中pattern部分可以使任何简单的或复杂的正则表达式，可以包含字符类、限定符、分组、向前查找以及反向引用。每个正则表达式都可带有一或多个标志(flags)，用以表明正则表达式的行为。正则表达式的匹配模式支持下列3个标志<br>g:表示全局(global)模式,即模式将被应用于所有字符串，而非在发现第一个匹配项时立即停止<br>i:表示不区分大小写(case-insensitive)模式<br>m:表示多行(multiline)模式，即在到达一行文本末尾时还会继续查找下一行是否存在于，模式匹配的项<br>因此，一个正则表达式就是一个模式与上诉3个表示的组合体，不同组合产生不同结果</p>
+<h3 id="正则表达式语法"><a href="#正则表达式语法" class="headerlink" title="正则表达式语法"></a>正则表达式语法</h3><p>行定位符(^和&amp;)<br>“^”表示行的开始 ，(&amp;)表示行的结束</p>
+<p>单词定界符(\b,\B)<br>\b表示的是一个完整的单词<br>\btm\b     就只是寻找tm单词，不是单词的一部分，就是不能匹配html等<br>\Btm\B     匹配的字符串不是一个完整的单词，而是其他单词或字符串</p>
+<p>字符类([])<br>[bac]at 就是可以匹配 bat、aat、cat 每个[]只能匹配一个字符</p>
+<p>选择字符(|)<br>T|tM|m     就是可以匹配T/t后接一个M/m</p>
+<p>连字符(-)<br>[a-zA-Z] 字符可以为全部小写字母加全部大写字母</p>
+<p>排除字符([^])<br>[^a-zA-Z]    该表达式表达就是不以字母开头和下划线开头的变量名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">限定符(?*+&#123;n,m&#125;)</span><br><span class="line">? 匹配前面的字符零次或一次	colou?r 可以匹配color colour</span><br><span class="line">* 匹配前面的字符零次或多次	go*gle 可以匹配到ggle gogle google gooogle 类推</span><br><span class="line">+ 匹配前面的字符一次或多次  go+gle 可以匹配到gogle google gooogle 类推 </span><br><span class="line">&#123;n&#125; 匹配前面的字符n次		go&#123;2&#125;gle  只能匹配到google</span><br><span class="line">&#123;n,&#125; 匹配前面的字符至少n次  go&#123;2,&#125;gle 至少匹配到google gooogle</span><br><span class="line">&#123;n,m&#125; 匹配前面的字符n次到m次 go&#123;2,20&#125;gle 就是匹配到google、到20个o都可以匹配到</span><br></pre></td></tr></table></figure>
+<p>点号字符(.)<br>(.)可以匹配换行符之外的任意一个字符</p>
+<p>转义字符()<br>将特殊字符(“.”,”\”,”?”)变为普通字符</p>
+<p>反斜线()</p>
+<p>反向引用<br>如要匹配两个it<br>(it)\1 这就可以匹配两个it</p>
+<h2 id="RegExp实例属性"><a href="#RegExp实例属性" class="headerlink" title="RegExp实例属性"></a>RegExp实例属性</h2><p>RegExp每个属性都具有下列属性，通过这些属性可以缺德有关模式的各种信息<br>global：布尔型，表示是否设置了g标志<br>ignoreCase：布尔型，表示是否设置了i标志<br>lastIndex:整数，表示开始搜索下一个匹配项的字符位置，从0开始；<br>multiline：布尔型，表示是否设置了m标志<br>source：正则表达式额字符串表示，按照字面量形式而非传入构造函数中的字符串模式返回<br>var regSammary=new RegExp(“/go+gle/“,”g”);<br>console.log(regSammary.global);    //true<br>console.log(regSammary.ignoreCase);    //false<br>console.log(regSammary.multiline);//fasle<br>console.log(regSammary.source);//go+gle</p>
 
       
     </div>
@@ -590,6 +663,12 @@ sayHi(&quot;Kevin&quot;+how art you today);
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javaScript/" rel="tag"><i class="fa fa-tag"></i> javaScript</a>
+          
+        </div>
       
 
       
@@ -711,7 +790,7 @@ sayHi(&quot;Kevin&quot;+how art you today);
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -761,7 +840,7 @@ sayHi(&quot;Kevin&quot;+how art you today);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量类型"><span class="nav-number">1.1.</span> <span class="nav-text">变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔操作符"><span class="nav-number">1.2.</span> <span class="nav-text">布尔操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘性操作符"><span class="nav-number">1.3.</span> <span class="nav-text">乘性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加性操作符"><span class="nav-number">1.4.</span> <span class="nav-text">加性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系操作符"><span class="nav-number">1.5.</span> <span class="nav-text">关系操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相等操作符"><span class="nav-number">1.6.</span> <span class="nav-text">相等操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相等与不相等-是转换后进行比较。"><span class="nav-number">1.6.1.</span> <span class="nav-text">相等与不相等 是转换后进行比较。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全等和不全等是不转换就进行比较"><span class="nav-number">1.6.2.</span> <span class="nav-text">全等和不全等是不转换就进行比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">1.7.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#do-while-while-if-for循环语句"><span class="nav-number">1.7.1.</span> <span class="nav-text">do-while while if for循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in语法"><span class="nav-number">1.7.2.</span> <span class="nav-text">for-in语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#label语句"><span class="nav-number">1.7.3.</span> <span class="nav-text">label语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break与continue语句"><span class="nav-number">1.7.4.</span> <span class="nav-text">break与continue语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with语句"><span class="nav-number">1.7.5.</span> <span class="nav-text">with语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有重载"><span class="nav-number">1.8.1.</span> <span class="nav-text">没有重载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量、作用域和内存问题"><span class="nav-number">2.</span> <span class="nav-text">变量、作用域和内存问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传递参数"><span class="nav-number">2.1.</span> <span class="nav-text">传递参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">检测类型</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量类型"><span class="nav-number">1.1.</span> <span class="nav-text">变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔操作符"><span class="nav-number">1.2.</span> <span class="nav-text">布尔操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘性操作符"><span class="nav-number">1.3.</span> <span class="nav-text">乘性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加性操作符"><span class="nav-number">1.4.</span> <span class="nav-text">加性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系操作符"><span class="nav-number">1.5.</span> <span class="nav-text">关系操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相等操作符"><span class="nav-number">1.6.</span> <span class="nav-text">相等操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相等与不相等-是转换后进行比较。"><span class="nav-number">1.6.1.</span> <span class="nav-text">相等与不相等 是转换后进行比较。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全等和不全等是不转换就进行比较"><span class="nav-number">1.6.2.</span> <span class="nav-text">全等和不全等是不转换就进行比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">1.7.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#do-while-while-if-for循环语句"><span class="nav-number">1.7.1.</span> <span class="nav-text">do-while while if for循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in语法"><span class="nav-number">1.7.2.</span> <span class="nav-text">for-in语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#label语句"><span class="nav-number">1.7.3.</span> <span class="nav-text">label语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break与continue语句"><span class="nav-number">1.7.4.</span> <span class="nav-text">break与continue语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with语句"><span class="nav-number">1.7.5.</span> <span class="nav-text">with语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有重载"><span class="nav-number">1.8.1.</span> <span class="nav-text">没有重载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量、作用域和内存问题"><span class="nav-number">2.</span> <span class="nav-text">变量、作用域和内存问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传递参数"><span class="nav-number">2.1.</span> <span class="nav-text">传递参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">检测类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行环境与作用域"><span class="nav-number">2.1.2.</span> <span class="nav-text">执行环境与作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集"><span class="nav-number">2.2.</span> <span class="nav-text">垃圾收集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#管理内存"><span class="nav-number">2.2.1.</span> <span class="nav-text">管理内存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用类型"><span class="nav-number">3.</span> <span class="nav-text">引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测数组"><span class="nav-number">3.0.1.</span> <span class="nav-text">检测数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date类型"><span class="nav-number">3.1.</span> <span class="nav-text">Date类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RegExp类型"><span class="nav-number">3.2.</span> <span class="nav-text">RegExp类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式语法"><span class="nav-number">3.2.1.</span> <span class="nav-text">正则表达式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RegExp实例属性"><span class="nav-number">3.3.</span> <span class="nav-text">RegExp实例属性</span></a></li></ol></li></ol></div>
             
 
           </div>
