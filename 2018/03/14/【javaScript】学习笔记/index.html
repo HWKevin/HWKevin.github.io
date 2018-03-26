@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="HWKevin&#39;s Blog">
 <meta property="og:description" content="javascript有三部分组成核心ECMAscript文档对象模型DOM (Document Object Model) 提供访问和操作网页内容的方法和借口浏览器对象模型BOM (Browser Object Model) 提供与浏览器交互的方法与借口 组成部分：语法、类型、语句、关键字、保留字、操作符、对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-19T10:32:31.361Z">
+<meta property="og:updated_time" content="2018-03-26T06:45:13.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【javaScript】学习笔记">
 <meta name="twitter:description" content="javascript有三部分组成核心ECMAscript文档对象模型DOM (Document Object Model) 提供访问和操作网页内容的方法和借口浏览器对象模型BOM (Browser Object Model) 提供与浏览器交互的方法与借口 组成部分：语法、类型、语句、关键字、保留字、操作符、对象">
@@ -565,7 +565,7 @@ sayHi(&quot;Kevin&quot;+how art you today);
 <li>有一种复杂的数据类型，object类型，该类型是这门语言中所有对象的基础类型</li>
 <li>严格模式为这门语言中容易出错的地方施加了限制</li>
 <li>ECMAScript从其他语言中借鉴了很多流控制语句、例如 if 、for、switch、</li>
-<li>无须指定函数的返回值，因为任何ECMAScript函数都可以在任何时候返回任何职</li>
+<li>无须指定函数的返回值，因为任何ECMAScript函数都可以在任何时候返回任何值</li>
 <li>位指定返回值的函数返回的是一个特殊的undefined值</li>
 <li>ECMAScript中没有函数签名的概念，因为其函数参数是一一个包含零或多个值的数组的性质传递的。</li>
 <li>可以向ECMAScript函数传递任意数量的参数，并且可以通过arguments对象来访问这些参数</li>
@@ -649,6 +649,223 @@ return(item&gt;2);    //false
 <p>反斜线()</p>
 <p>反向引用<br>如要匹配两个it<br>(it)\1 这就可以匹配两个it</p>
 <h2 id="RegExp实例属性"><a href="#RegExp实例属性" class="headerlink" title="RegExp实例属性"></a>RegExp实例属性</h2><p>RegExp每个属性都具有下列属性，通过这些属性可以缺德有关模式的各种信息<br>global：布尔型，表示是否设置了g标志<br>ignoreCase：布尔型，表示是否设置了i标志<br>lastIndex:整数，表示开始搜索下一个匹配项的字符位置，从0开始；<br>multiline：布尔型，表示是否设置了m标志<br>source：正则表达式额字符串表示，按照字面量形式而非传入构造函数中的字符串模式返回<br>var regSammary=new RegExp(“/go+gle/“,”g”);<br>console.log(regSammary.global);    //true<br>console.log(regSammary.ignoreCase);    //false<br>console.log(regSammary.multiline);//fasle<br>console.log(regSammary.source);//go+gle</p>
+<p>Function类型<br>没有重载，函数实际上也是对象，每个函数都Function的实例，而且有与其他引用类型一样具有属性和方法，由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。函数通常是使用函数声明语法定义的<br>函数声明<br>function sum(num1,num2){<br>    return num1+num2;<br>}<br>函数表达式<br>var sum=function(num1,num2){<br>    return num1+num2;<br>};<br>第二个通过变量sum即可以引用函数。函数末尾有一个分号</p>
+<p>以上代码首先定义了一个名为sum()的函数，用于求两个值的和，然后又声明了变量<br>function sum(num1,num2){<br>    return num1+num2;<br>}<br>var anotherSum=sum;<br>sum(2,5);<br>anotherSum(1,3);</p>
+<p>函数声明与函数表达式<br>函数声明与函数表达式不同，解析器会率先读取函数声明，并在其执行环境任何代码之前就可以使用。至于函数表达式，则必须等到解析器执行到它所在的代码行，才会真正被解析执行<br><!-- 函数声明 --><br>alert(sum(10,10));<br>function sum(num1,num2){<br>    return num1+num2;<br>}</p>
+<!-- 函数表达式 -->
+<p>alert(sum(10,10));<br>var sun=function(num1,num2){<br>    return num1,num2;<br>}<br>第二个会出现错误，原因在于函数位于一个初始化语句中，而不是一个函数声明，执行到alert()上时，解析器不会保存函数的引用，而且由于第一行代码就会导致”unexpected identifier”(意外标识符)错误。实际上也不会执行到下一行<br>除了什么时候可以通过变量访问函数这一点上不同，其他没什么差别</p>
+<h3 id="作为值的函数"><a href="#作为值的函数" class="headerlink" title="作为值的函数"></a>作为值的函数</h3><p>因为ECMAScript中的函数名本身就是变量，所以函数也可以作为值来使用。不仅可以像传递参数一样把一个函数传递到另一个函数，而且可以将一个函数作为另一个函数的结果返回。<br>function returnFunction(someFunction,someArgument){<br>    return someFunction(someArgument());<br>}<br>接受两个函数，返回someFunction(someArgument())的值;<br>function addNum(num1){<br>  if(num1&gt;0){<br>  return num1+arguments.callee(num1);<br>  }<br>  else{<br>        return 0;<br>  }<br>}<br>在函数内没有引用addNum()函数，所以无论引用函数时使用什么名字，都可以保证正常完成递归调用</p>
+<h3 id="函数内部属性"><a href="#函数内部属性" class="headerlink" title="函数内部属性"></a>函数内部属性</h3><p>函数内部有两个属性arguments和this<br>arguments是一个类数组的对象，包含传入函数中的所有数组，虽然arguments主要用途是保存函数参数，但该对象还有一个属性callee，该属性是一个指针，指向拥有这个arguments对象的函数<br>    function recursion(num) {<br>        if (num &gt; 0) {<br>            return num + arguments.callee(num - 1);<br>        } else {<br>            return num;<br>        }<br>    }<br>    console.log(recursion(10));<br>    var anotherRecursion = recursion;//这里就是保留了原本recursion的指针，所以后面直接使用anotherRecursion还是会迭代</p>
+<pre><code>recursion=function() {
+    return 0;
+}
+console.log(anotherRecursion(10)); //55
+console.log(recursion(10));//0
+</code></pre><h4 id="this属性"><a href="#this属性" class="headerlink" title="this属性"></a>this属性</h4><p>函数内部的另一个特殊对象就是this，this引用的是函数执行的环境对象——this值(当在网页的全局作用域中调用函数时，this对象引用的就是window)</p>
+<p>函数的名字仅仅是一个包含指针的变量，及时是在不同的环境中执行，调用的函数对象还是一样的，因为指针指向的仍然是固定的函数<br>ES5规范化另一个函数的属性：caller。这个属性保存着调用当前函数的函数的引用，如果实在全局作用域中调用当亲函数，它的值为null<br>function outer(){<br>    inner();<br>}<br>function inner(){<br>    alert(inner.caller);<br>}<br>outer();    //会输出调用该函数的代码：function outer(){inner()};<br>inner.caller==arguments.callee.caller;</p>
+<p>在严格模式先callee和caller都会出错</p>
+<h3 id="函数属性和方法"><a href="#函数属性和方法" class="headerlink" title="函数属性和方法"></a>函数属性和方法</h3><p>函数是对象，因此函数也有属性和对象<br>每个函数都包含两个对象length prototype<br>length表示函数接受参数的个数<br>如前面的recursion.length; //1 参数为1</p>
+<p>对于ECMAScript中的引用类型而言，prototype是保存它们所有实例方法的真正所在。诸如toString() valueOf()等函数实际上是保存在prototype名下，只不过是通过各自对象的实例访问<br>每个函数都包含两个非继承而来的方法：apply() 和call() 用途都是在特定的作用域中调用函数，实际上等于设置函数体内的this对象的值。<br>apply()接收两个参数，第一个为运行函数的执行环境、第二个是参数数组</p>
+<p>使用apply() call() 函数<br>apply()函数接收两个参数，第一个参数是其中运行函数的执行环境，另一个为数组可以为arguments或者Array()的实例<br>call()函数与apply()差不多，就是第二参数要每一个都写上去<br>function sum(num1,num2){<br>    return num1,num2;<br>}<br>function sum1(num1,num2){<br>    return sum.apply(this,arguments);<br>}<br>function sum2(num1,num2){<br>    return sum.call(this,num1,num2);//必须每个参数都要写进去<br>}<br>其实apply()与call()是在前面说明this 就后面不同<br>传递函数并非apply()和call()的主要，真正强大的是能扩充函数赖以生存的作用域<br>function actioning(){<br>    alert(this.number);<br>}<br>var t=( number : 3 );<br>window.color = 4 ;<br>actioning();//this.number 函数中没有，到全局环境中寻找 4<br>actioning.apply(t);//t.number  3<br>actioning.apply(window);//4<br>actioning.call(t);//3</p>
+<p>基本包装类型：<br>为了便于操作基本数据类型，提供了3个特殊的引用类型：String()、Boolean()、Number()<br>后台会执行类似的方法<br>1、创建String()实例<br>2、在实例上调用指定的方法<br>3、销毁这个实例<br>var debugString=new String(“测试”);<br>var k1=debugString.substring(2);<br>k1=null;</p>
+<p>单体内置对象<br>Global、Math<br>其实所有在全局作用域定义的所有变量和函数都是Global对象的属性<br>eval()方法，只接受一个参数，即要执行的ECMAScript字符串<br>eval(“alert(‘hi’)”);<br>与alert(‘hi’);一样<br>当解析器发现代码中调用eval()方法时，会传入参数当实际ES语句来解析</p>
+<p>Math对象<br>属性<br>Math.E<br>Math.LN10<br>Math.LN2<br>Math.LOG2E<br>Math.LOG10E<br>Math.PI<br>Math.SQRT1/2</p>
+<p>Math.mix() Math.max() Math.round() Math.ceil() Math.floor() Math.random()<br>Math.random()方法返回介入0和1之间一个随机数，不包括0和1。<br>利用Math.random()从某个整数范围内随机选一个值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">值= Math.floor(Math.random()*可能值的总数+最小的可能值);</span><br><span class="line">var num=Math.floor(Math.random()*9+2);//从2到10</span><br><span class="line">总共9个值，最小值为2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function selectFrom(lowerValue,upperValue)&#123;</span><br><span class="line">	var totleNum=upperValue-lowerValue+1;</span><br><span class="line">	return Math.floor(Math.random()*totleNum+lowerValue);</span><br><span class="line">&#125;</span><br><span class="line">console.log(selectFrom(2,10));</span><br></pre></td></tr></table></figure></p>
+<h3 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h3><p>对象在JavaScript中被称为引用类型的值，而且有一些内置的引用类型可以用来创建特定的对象<br>引用类型与传统面向对象设置中的类相似，但实现不用<br>Object是一个基础类型，其他所有类型都从Object继承了基本的行文<br>Array类型是一组值的有序列表，同时还提供来操作和转化你这些值的功能<br>Date类型提供里有关日期和时间的信息，包括当前日期和时间以及相关的计算功能<br>RegExp是ECMAScript支持正则表达式的一个借口，提供了最基本的和一些高级的正则表达式<br>函数实际上是function类型的实例</p>
+<h1 id="面向对象的程序设计"><a href="#面向对象的程序设计" class="headerlink" title="面向对象的程序设计"></a>面向对象的程序设计</h1><h2 id="理解对象"><a href="#理解对象" class="headerlink" title="理解对象"></a>理解对象</h2><h3 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h3><p>ECMAScript有两种属性数据属性和访问器属性</p>
+<h3 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h3><p>数据属性包含了一个数据值的位置在这个位置可以读取和写入值，数据属性有4个描述其行为的特性<br>[[Configurable]]: 表示能否通过delete删除属性从而重新定义属性，默认为true<br>[[Enumberable]]: 表示能否通过for-in属性循环返回属性 默认为true<br>[[Writable]]：表示能够修改属性的值<br>[[Value]]：包含这个属性的数据值。在读取属性值的时候，从这个位置度，写入属性值的时候，把新值保存在这个位置<br>var person={<br>    name:”Kevin”<br>};<br>创建一个name的属性，[[Value]]特性将被设置为”Kevin”<br>要修改属性默认的特性，必须使用Object.defineProperty()方法，该方法接受三个参数：属性所在对象、属性名字和一个描述符对象，描述符对象的属性必须是：configurable、enumberable、writable、value。设置一个或多个值，可以修改对应的特性值<br>var person={};<br>Object.defineProperty(person,”name”,{<br>    writable:false,<br>    value:”kevin”<br>});</p>
+<p>alert(person.name);//kevin<br>person.name=”Grag”;<br>alert(person.name);//kevin<br>调用Object.defineProperty()方法时，如果不指定，默认情况下，configurable、enumberable、value、writable将为false，多数情况下，可能没有必要利用Object.definProperty()方法提供的这些高级功能。</p>
+<h3 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h3><p>访问器属性不包含数据值：它们包含一堆getter、setter函数(不过，这两个函数都不是必须的)。<br>在读取访问器属性时，会调用getter函数，这个函数负责返回有效的值，在写入访问器属性时，会带哦一年setter函数并传入新值，这个函数负责决定如何处理数据，访问器属性有如下4个特性<br>[[Configurable]]:表示能否通过delete删除属性从而重新定义函数，能否修改属性的特性，或者能否把属性修改为数据属性<br>[[Enumberable]]:能否通过for-in循环返回属性，对于直接在队形上定义的属性，这个特性的默认值为true<br>[[Get]]：读取属性调用的函数，默认为undefined<br>[[Set]]：写入属性调用的函数，默认为undefined</p>
+<p>访问器属性不能直接定义，必须使用Object.defineProperty()来定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var book=&#123;</span><br><span class="line">	year:2005,</span><br><span class="line">	edition:2</span><br><span class="line">&#125;;</span><br><span class="line">Object.defineProperty(book,&quot;year&quot;.&#123;</span><br><span class="line">	get:function()&#123;</span><br><span class="line">		return this.year;</span><br><span class="line">	&#125;</span><br><span class="line">	set:function()&#123;</span><br><span class="line">		this.year=newValue;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>上述都是定义某一个属性的，但经常使用的是为对象定义多个属性<br>Object.defineProperties()<br>定义的前面的下划线是一种常用的标记，用于表示只能通过对象方法访问的属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var book=&#123;&#125;;</span><br><span class="line">Object.defineProperties(book,&#123;</span><br><span class="line">	_year:&#123;</span><br><span class="line">		value:2018</span><br><span class="line">	&#125;,</span><br><span class="line">	name:&#123;</span><br><span class="line">		value:4</span><br><span class="line">	&#125;,</span><br><span class="line">	year:&#123;</span><br><span class="line">		get:function()&#123;</span><br><span class="line">			return year;</span><br><span class="line">		&#125;,</span><br><span class="line">		set:function()&#123;</span><br><span class="line">			if()&#123;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="读取属性的特性"><a href="#读取属性的特性" class="headerlink" title="读取属性的特性"></a>读取属性的特性</h3><p>Object.getOwnPropertyDescriptor()，取得给定属性的描述符<br>接收两个参数：属性所在对象和读取其描述符的属性名称，返回值是一个对象。如果是访问器属性，有configurable、value、enumberable、writable。数据属性<br>var desciptor=Object.hasOwnPropertyDescriptor(book,”year”);<br>console.log(descriptor.value);    //2018<br>console.log(descriptor.writable);//true</p>
+<h1 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h1><p>因为Object()构造函数或对象字面量都可以用来创建单个对象，但有个明显的缺点：使用同一个接口创建很多对象，会产生大量重复代码。为此，使用工厂模式的一种变体</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>发明一种函数，用函数来封装特定接口创建对象的细节<br>function createPerson(name,age,job){<br>    var o=new Object();<br>    o.name=name;<br>    o.age=age;<br>    o.job=job;<br>    o.sayName=function(){<br>        alert(this.name);<br>    };<br>    return o;<br>}<br>var person1=creatPerson(“Nicholas”,29,”hardwork”);<br>var person2=creatPerson(“kevin”,30,”easywork”);</p>
+<p>function Person(name,age,job){<br>    this.name=name;<br>    this.age=age;<br>    this.job=job;<br>    this.sayName=function(){<br>        return name;<br>    }<br>}<br>var person1=new Person(“xiaoming”,5,”student”);<br>Person使用大写字母，惯例是构造函数都应该以一个大写字母开头，而非构造函数则应该以一个小写字符开头，主要是为了区别ECMAScript函数，因为构造函数本身也是函数，只不过可以用来创建对象而已<br>步骤：<br>(1)创建一个新对象<br>(2)将执行构造函数的作用域赋给新对象<br>(3)执行构造函数中的代码<br>(4)返回新对象<br>person1对象有一个constructor(构造函数)属性，该属性指向Person函数</p>
+<p>将构造函数当做函数<br><!-- 当做普通函数 --><br>window.Person();<br><!-- 当做构造函数 --><br>var obj=new Person(“name”,20,”planning”);<br>alert(obj.name);//name<br><!-- 在另一对象域中调用 --><br>var o=new Object();<br>Person.call(o,”kevin”,20,”doctor”);<br>o.sayName();</p>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>创建的每一个函数都有proproperty属性，这个属性是一个指针，指向一个对象，而这个对象的用途是可以包含由特定类型的所有实例共享的属性和方法，如果按照字面意思来理解，nameproperty就是通过调用构造函数而创建的那个对象实例的原型对象，使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。<br>function Person(){};<br>Person.property.name=”kk”;<br>Person.property.age=12;<br>Person.property.job=”job”;<br>Person.property.sayName=function(){<br>    alert(this.name);<br>}</p>
+<p>实例与原型<br><!-- 原型 --><br>function Person(){};<br>Person.property.name=”kk”;<br>Person.property.age=12;<br>Person.property.job=”job”;<br>Person.property.sayName=function(){<br>    alert(this.name);<br>}<br>person1=new Person();<br>person1.hasOwnProperty(“name”);//false 没有实例<br>alert(name in person1);</p>
+<!-- 关于Object.getPrototypeOf -->
+<p>Constructor hasOwnProperty isPrototypeOf propertyIsEnumberable<br>Object.getPrototypeOf()，在所有支持的实现中，这个方法返回[[Prototype]]的值<br>alert</p>
+<p>//体现了原型与实例的差别<br>function Person(){};<br>    Person.prototype.name=”JK”;<br>    Person.prototype.age=20;<br>    Person.prototype.job=”Softwart Enginer”;<br>    Person.prototype.sayName=function(){<br>        alert(this.name);<br>    }</p>
+<pre><code>var person1=new Person();
+console.log(person1.hasOwnProperty(&quot;name&quot;));//false
+console.log(person1.name);//JK
+   person1.name=&quot;BB&quot;;//实例
+   delete person1.name//删除实例属性
+</code></pre><p>当为对象实例添加一个属性时，这个属性就会屏蔽原型对象中保存的同名属性；添加这个属性只会阻止我们访问原型中的那个属性，但不会修改那个属性，及时将这个属性设置为null，也只会在实例中设置这个属性，而不会恢复其指向原型的连接。不过使用delete操作符可以完全删除实例属性</p>
+<h2 id="原型与in操作符"><a href="#原型与in操作符" class="headerlink" title="原型与in操作符"></a>原型与in操作符</h2><p>有两种方式使用in操作符：单独使用和在for-in循环中使用，在单独使用时，in操作符会在通过对象访问属性时返回true，无论该属性存在实例中还是原型中。</p>
+<p>var person1 = new Person();<br>var person3= new Person();</p>
+<p>console.log(person1.hasOwnProperty(“name”))//false<br>console.log(“name” in person1);//true</p>
+<p>person1.name=”Kevin”;<br>console.log(person1.hasOwnProperty(“name”))//true<br>console.log(“name” in person1);//true</p>
+<p>说明了无论来自原型还是实例，都可以单独使用in来确定对象中是否存在该属性<br>name属性要么是直接在对象中访问到，要么是在实例上访问到的</p>
+<p>同时用hasOwnProperty和in可以确定属性是在原型中还是实例中<br>function hasPrototypeProperty(object,name){<br>    return (object.hasOwnProperty &amp;&amp; “name” in object);//true为实例，false为原型<br>}</p>
+<p>使用for-in循环时，返回的是所有能够通过对象访问的、可枚举的属性，其中既包含存在实例中的属性，也包含了原型中的属性。屏蔽了原型中不可枚举属性的实例属性也会在for-in循环中返回，所有开发人员定义的属性都是可枚举的————只有在IE8即更早版本中例外。<br>Object.keys()方法 ——取得对象上所有可枚举的实例属性，接收一个对象作为参数，返回一个包含所有可枚举属性的字符串数据<br>Object.keys(对象)返回对象中所有能被枚举的实例属性<br>function KeyReturn(){};<br>KeyReturn.name=”pan”;<br>KeyReturn.age=12;<br>KeyReturn.job=”teacher”;<br>KeyReturn.number=20151291911;<br>var obj=new KeyReturn();<br>Object.keys(obj);</p>
+<p>4 原型的动态性<br>由于在原型中查找值的过程是一次搜索，因此我们队原型对象所做的任何修改都能够立即从实例上反映出来————及时是先创建了实例后修改原型也照样如此</p>
+<p>组合使用构造函数模式和原型模式<br>创建自定义类型的最常见方法，就是组合使用构造函数模式与原型模式。构造函数模式用于定义实例属性，而原型模式用于定义方法和共享的属性。每个实例都会有自己的一份实例属性的副本，但同时又共享对方法的引用，最大节省内存</p>
+<h2 id="创建对象-1"><a href="#创建对象-1" class="headerlink" title="创建对象"></a>创建对象</h2><h3 id="工厂模式-1"><a href="#工厂模式-1" class="headerlink" title="工厂模式"></a>工厂模式</h3><pre><code>function factoryMethod(name, job, age) {
+    var o = new Object();
+    o.name = name;
+    o.job = job;
+    o.age = age;
+    o.sayHello = function() {
+        console.log(o.name);
+    };
+    return o;
+}
+var person1 = factoryMethod(&quot;kevin&quot;, &quot;soft&quot;, 21);
+var person2 = factoryMethod(&quot;Greg&quot;, &quot;soft&quot;, 21);
+</code></pre><h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><pre><code>// 构造函数
+console.log(&quot;构造函数&quot;);
+
+function constructor(name, job, age) {
+    this.name = name;
+    this.job = job;
+    this.age;
+    this.sayHello = function() {
+        console.log(this.name);
+    }
+}
+var personC1 = new constructor(&quot;kevin&quot;, &quot;soft&quot;, 21);
+personC1.sayHello();
+var personC2 = new constructor(&quot;Greg&quot;, &quot;soft&quot;, 21);
+personC2.sayHello();
+</code></pre><h3 id="原型函数模式"><a href="#原型函数模式" class="headerlink" title="原型函数模式"></a>原型函数模式</h3><pre><code>// 原型函数
+function prtMethod() {};
+prtMethod.prototype.name = &quot;JJD&quot;;
+prtMethod.prototype.age = 23;
+prtMethod.prototype.job = &quot;teacher&quot;;
+prtMethod.prototype.sayHello = function() {
+    console.log(this.name);
+}
+
+var personP1 = new prtMethod();
+console.log(&quot;原型函数为&quot; + personP1.name);
+</code></pre><h3 id="组合函数模式"><a href="#组合函数模式" class="headerlink" title="组合函数模式"></a>组合函数模式</h3><pre><code>// 组合函数
+console.log(&quot;组合函数&quot;);
+
+function mixMethod(name, job, age) {
+    this.name = name;
+    this.job = job;
+    this.age = age;
+}
+
+function mixMethod() {
+    mixMethod.prototype.sayHello = function() {
+        console.log(this.name);
+    }
+}
+var personM = new mixMethod(&quot;jake&quot;,&quot;kidding&quot;,32);
+personM.sayHello();
+</code></pre><h3 id="动态原型模式"><a href="#动态原型模式" class="headerlink" title="动态原型模式"></a>动态原型模式</h3><pre><code>// 动态原型模式
+function activeMethod(name, job, age) {
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    if ( typeof this.sayHello != &quot;function&quot;) {
+        activeMethod.prototype.sayHello = function() {
+            console.log(this.name);
+        }
+    }
+}
+var personA=new activeMethod(&quot;Giek&quot;,&quot;78&quot;,&quot;Old Man&quot;);
+personA.sayHello();
+</code></pre><h3 id="寄生构造函数模式"><a href="#寄生构造函数模式" class="headerlink" title="寄生构造函数模式"></a>寄生构造函数模式</h3><pre><code>// 以上模式都不适用的情况下
+// 基本思想：创建一个函数，仅仅是封装创建对象的代码，然后再返回新创建的对象
+// 除了使用new操作符并把使用的包装函数叫做构造函数之外，这个模式跟工厂模式其实是一模一样的。构造函数在不返回值的情况下，默认会返回新对象实例，而通过在构造函数为末尾添加一个return语句，可以重写嗲用构造函数时返回的值
+// 这个函数可以在特殊情况下用来为对象创建构造函数。
+function Parasitic(name, job, age) {
+    var o = new Object();
+    o.name = name;
+    o.job = job;
+    o.age = age;
+    o.sayHello = function() {
+        console.log(o.name);
+    }
+    return o;
+}
+var personPar=new Parasitic(&quot;qb&quot;,32,&quot;doctor&quot;);
+
+/**
+ * [SpecialArray description]利用寄生构造函数 
+ * 常见一个额外方法的特殊数组，因为不能直接修改Array()函数，因此可以使用这个模式
+ * 返回的对象与构造函数或者与构造函数的原型属性之间没有关系
+ * 构造函数返回的对象与在构造函数外部创建的对象没有什么不同，为此不能依赖instanceof操作符来确定对象类型
+ */
+function SpecialArray(){
+    // 创建数组
+    var values=new Array();
+
+    // 添加值
+    values.push.apply(values,arguments);
+
+    // 添加方法
+    values.toPipedString=function(){
+        return this.join(&quot;|&quot;);
+    };
+    // 返回数组
+    return values;
+}
+var colors=new SpecialArray(&quot;red&quot;,&quot;blue&quot;,&quot;black&quot;);
+console.log(colors.toPipedString());
+</code></pre><h3 id="稳妥构造啊函数模式"><a href="#稳妥构造啊函数模式" class="headerlink" title="稳妥构造啊函数模式"></a>稳妥构造啊函数模式</h3><pre><code>/**
+ * 稳妥构造函数模式
+ * 没有使用new和this，保证了调用方法的安全性，就像例子中的一样，只能调用sayHello()方法来调用name
+ * 所谓稳妥对象，指的是没有公共属性，稳妥对象最适合在一些安全的环境中。
+ * @param  {[type]} name [string]
+ * @param  {[type]} job  [string]
+ * @param  {[type]} age  [string]
+ * @return {[type]}      [object]
+ */
+function safeMethod(name,job,age){
+    var o=new Object();
+    o.sayHello=function(){
+        console.log(name);
+    }
+    return o;
+}
+</code></pre><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>ECMAScript只支持实现继承，实现继承主要是依靠原型链来实现的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 原型链 下面SubType的prototype指向SuperType.prototype，instance指向SubType.prototype</span><br><span class="line">     * 所有的对象都是继承Object所有Object()属性方法各种函数都是有的，Constructor、hasOwnProperty、prototypeIsEnumberable、isPrototypeOf、toLocaleString、toString、valueOf</span><br><span class="line">     */</span><br><span class="line">    function SuperType()&#123;</span><br><span class="line">    	this.prototype=true;</span><br><span class="line">    	SuperType.prototype.getValue=function()&#123;</span><br><span class="line">    		return this.prototype;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function SubType()&#123;</span><br><span class="line">    	this.subprototype=false;</span><br><span class="line">    &#125;</span><br><span class="line">    SubType.prototype=new SuperType();</span><br><span class="line">    SubType.prototype.getSubValue=function()&#123;</span><br><span class="line">    	return this.subprototype;</span><br><span class="line">    &#125;;</span><br><span class="line">    var instance=new SubType();</span><br><span class="line">    console.log(instance.getSubValue());</span><br><span class="line">    console.log(instance.getValue());</span><br></pre></td></tr></table></figure></p>
+<p>所有引用类型默认继承了Object，而这个继承也是通过原型链实现的。<br>2、认定原型和实例的关系<br>第一种方法是使用instanceof操作符，只要用这个操作符来测试实例与原型链中出现过的构造函数，使用和这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回true<br>console.log(instance instanceof SuperType);//true<br>console.log(instance instanceof SubType);//true<br>console.log(instnace isntnaceof SubType);//true</p>
+<p>由于原型链的关系，可以说instance是SubType、SuperType、Object的实例<br>第二种方法<br>isPrototypeOf()方法，只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型<br>console.log(instance isPrototype Object);//true<br>console.log(instance isPrototype SuperType);//true<br>console.log(instance isPrototype SubType);//true</p>
+<p>3、谨慎地定义方法<br>子类型有时候需要重写超类型中的某个方法，或者需要添加超类型中不存在的某个方法<br>在通过原型链实现继承时，不能使用对象字面量创建原型方法，这样会重写原型链的</p>
+<p>4、原型链的问题<br>最主要的问题来自包含引用类型值的原型，前面介绍过包含引用类型值的原型属性会被所欲实例共享;而这也正是为什么要在构造函数中，而不是原型对象中定义属性的原因<br>(简单的说就是在原型链中定义的，后面实例继承后，原型中所有属性都会继承到实例中)<br>第二个问题：在创建子类型的实例时，不能向超类型的构造函数中传递参数。实际上，应该说没有办法在不影响所有对象实例的情况下，在超类型的构造函数传递参数，有鉴于此。在</p>
+<h1 id="小引用与小总结"><a href="#小引用与小总结" class="headerlink" title="小引用与小总结"></a>小引用与小总结</h1><h2 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h2><p>执行上下文的生命周期可以分为两个阶段</p>
+<ol>
+<li>创建阶段 执行上下文会分别创建变量对象，建立作用域链，以及确定this的指向</li>
+<li>代码执行阶段 创建完成之后，就会开始执行代码，这个时候，会完成变量赋值，函数引用，以及执行其他代码</li>
+</ol>
+<h3 id="创建阶段"><a href="#创建阶段" class="headerlink" title="创建阶段"></a>创建阶段</h3><h4 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h4><p>1、建立arguments对象，检查当前上下文中的参数，建立该对象下的属性与属性值<br>2、检查当前上下文的函数声明，也就是使用function关键字声明的函数。在变量对象中以函数名建立一个属性，属性值为指向该函数所在内存地址的引用，如果函数名的属性已经存在，那么该属性将会被新的引用所覆盖<br>3、检查当前上下文的变量声明，每找到一个变量声明，就在变量对象中以变量名建立一个属性，属性值为undefined。如果该变量名的属性已经存在，为了防止同名的函数被修改为undefined,则会直接跳过，原属性值不会修改<br>注意上面说得都是在创建阶段上，还没有到代码执行阶段</p>
+<p>然后就是代码执行阶段了<br>未进入执行阶段之前，变量对象都不能进行访问，但是进入执行阶段之后，便利康对象转变为活动对象，里面的属性就能访问了，然后开始进行执行阶段的操作<br>变量对象与活动对象：<br>其实都是同一个对象，只是执行上下文的不同生命周期，不过只有处于函数调用栈栈顶的执行上下翁中的变量对象，才会变成活动对象</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h3 id="作用域与作用域链"><a href="#作用域与作用域链" class="headerlink" title="作用域与作用域链"></a>作用域与作用域链</h3><p>作用域</p>
+<ul>
+<li>在JavaScript中，可以将作用域定义为一套规则，这套规则用来管理引擎如何在当前作用域以及嵌套的子作用域中根据标识符名称进行变量查找(标识符指的是变量名或者函数名)</li>
+<li>JavaScript中只有全局作用域与函数作用域(eval在平时开发中很少用到)</li>
+<li>作用域与执行上下文时完全不同的两个概念，一定要仔细区分<blockquote>
+<p>JavaScript代码的整个执行过程，分为两个阶段，代码编译阶段与代码执行阶段，编译阶段由编译器完成，将代码翻译成可执行代码，这个阶段作用域规则会确定，执行阶段由引擎完成，主要任务是执行可执行代码，执行上下文在这个阶段创建。</p>
+</blockquote>
+</li>
+</ul>
+<p>作用域链<br>是由当前环境与上层环境的一系列变量对象组成，它保证了当前环境对符合访问权限的变量和函数的有序访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 例子</span><br><span class="line">var a = 20;</span><br><span class="line">function test()&#123;</span><br><span class="line">	var b=a+10;</span><br><span class="line">	function innerTest()&#123;</span><br><span class="line">		var c=10;</span><br><span class="line">		return b+c;</span><br><span class="line">	&#125;</span><br><span class="line">	return innerTest();</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line">/**</span><br><span class="line"> * innerTestEC=&#123;</span><br><span class="line"> * 		VO:&#123;...&#125;;//变量对象</span><br><span class="line"> * 		scopeChain:[VO(innnerTest),VO(test),VO(global)];</span><br><span class="line"> * &#125;</span><br><span class="line"> * 直接使用一个数组表示作用域链，数组的第一项scopeChain[0]作为作用域链的最前端，而数组的最后一项，为作用域端的最末端，所有的最末端都为全局变量对象</span><br><span class="line"> * 很多人会误解为当前作用域与上层作用域为包含关系，但其实并不是，以最前端为七点，最末端为重点的单方向通道是更为贴切的形容</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<p>闭包<br>闭包是一种特殊的对象<br>由两部分组成，执行上下文(代号A)，以及在该执行上下文中创建的函数(代号B)<br>当B执行时，如果访问了A中变量对象的值，那么闭包就产生。<br>在大多数理解中，包括许多著名的书籍，文章里都以函数B的名字呆滞这里生成的闭包，而在Chrome中，则以执行上下问的函数名呆滞闭包<br>因此我们只需要知道，一个闭包对象，由A、B共同组成的。<br>function foo() {<br>        var a = 20;<br>        var b = 3;</p>
+<pre><code>    function bar() {
+        return a + b;
+    };
+    return bar;
+}
+var bar = foo();
+bar();
+</code></pre><p>使用chrome调试工具得出的结果是上面的函数中，闭包为foo()，就是说是以执行上下文的函数名来作为闭包名称，其实是两个合在一起的，执行上下文和执行上下文中创建的函数的调用执行上下文的变量对象，执行上下文A和执行上下文创建的函数B。B调用了A的变量对象就产生了闭包</p>
+<p>首先有执行上下文，在foo中定义了函数bar，而通过对外返回bar方式让bar得以执行，当bar执行时，访问foo内部的变量a,b。因此这个时候闭包产生<br>我们知道，函数的执行上下文，执行完毕之后，生命周期结束，该函数的执行上下文就会失去引用，其占用的内存空间很快就会被垃圾回收期释放，可是闭包的存在，会阻止这一过程</p>
+<p>闭包有两个非常重要的应用情景。分别是模块化、柯里化</p>
+<p>柯里化<br>在函数式编程中，利用闭包能够实现很多炫酷的功能，柯里化就是其中一种，详细查阅资料后再补充</p>
+<h3 id="this解析"><a href="#this解析" class="headerlink" title="this解析"></a>this解析</h3><p>创建执行上下文，知道执行上下文会有两个生命周期，创建阶段和代码执行阶段。创建阶段是创建变量对象，建立作用域链，确定this指向。代码执行阶段是变量赋值，函数引用，执行其他代码</p>
+<blockquote>
+<p>得出一点，this的指向，是在函数被调用的时候被确定的，也就是执行上下文被创建时确定的，因此一个函数中this的指向是非常灵活的</p>
+</blockquote>
+<p>var a=10;<br>var obj = {<br>    a:20<br>}<br>function fn(){<br>    console.log(this.a);<br>}<br>fn();//10<br>fn.call(obj);//20<br>除此之外，在函数执行过程中，一旦this被确定就不能更改</p>
+<p>var a=10;<br>var obj={<br>    a:20<br>}<br>function fn(){<br>    this=obj;//抛出错误，在构建函数时，this已经确定了<br>    console.log(this.a);<br>}</p>
+<p>一、全局对象中的this<br>关于全局对象this，会指向自己，相对复杂</p>
+<p>二、函数中的this<br>如果调用者函数，被某一对象所拥有，那么该函数在调用时，内部的this指向该对象，如果函数独立调用，那么该函数内部的this，则指向undefined，在非严格模式下，指向的是全局对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;</span><br><span class="line">var a = 20;</span><br><span class="line">    function foo() &#123;</span><br><span class="line">        var a = 1;</span><br><span class="line">        var obj = &#123;</span><br><span class="line">            a: 10,</span><br><span class="line">            c: this.a + 20,</span><br><span class="line">            fn: function() &#123;</span><br><span class="line">                return this.a;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return obj.c;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    console.log(foo()); //  chrome会抛出错误</span><br><span class="line">    console.log(window.foo()); // 40</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -688,6 +905,10 @@ return(item&gt;2);    //false
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/20/H5css规范/" rel="prev" title="H5css规范">
+                H5css规范 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -768,7 +989,7 @@ return(item&gt;2);    //false
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -790,7 +1011,7 @@ return(item&gt;2);    //false
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -840,7 +1061,7 @@ return(item&gt;2);    //false
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量类型"><span class="nav-number">1.1.</span> <span class="nav-text">变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔操作符"><span class="nav-number">1.2.</span> <span class="nav-text">布尔操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘性操作符"><span class="nav-number">1.3.</span> <span class="nav-text">乘性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加性操作符"><span class="nav-number">1.4.</span> <span class="nav-text">加性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系操作符"><span class="nav-number">1.5.</span> <span class="nav-text">关系操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相等操作符"><span class="nav-number">1.6.</span> <span class="nav-text">相等操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相等与不相等-是转换后进行比较。"><span class="nav-number">1.6.1.</span> <span class="nav-text">相等与不相等 是转换后进行比较。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全等和不全等是不转换就进行比较"><span class="nav-number">1.6.2.</span> <span class="nav-text">全等和不全等是不转换就进行比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">1.7.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#do-while-while-if-for循环语句"><span class="nav-number">1.7.1.</span> <span class="nav-text">do-while while if for循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in语法"><span class="nav-number">1.7.2.</span> <span class="nav-text">for-in语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#label语句"><span class="nav-number">1.7.3.</span> <span class="nav-text">label语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break与continue语句"><span class="nav-number">1.7.4.</span> <span class="nav-text">break与continue语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with语句"><span class="nav-number">1.7.5.</span> <span class="nav-text">with语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有重载"><span class="nav-number">1.8.1.</span> <span class="nav-text">没有重载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量、作用域和内存问题"><span class="nav-number">2.</span> <span class="nav-text">变量、作用域和内存问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传递参数"><span class="nav-number">2.1.</span> <span class="nav-text">传递参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">检测类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行环境与作用域"><span class="nav-number">2.1.2.</span> <span class="nav-text">执行环境与作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集"><span class="nav-number">2.2.</span> <span class="nav-text">垃圾收集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#管理内存"><span class="nav-number">2.2.1.</span> <span class="nav-text">管理内存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用类型"><span class="nav-number">3.</span> <span class="nav-text">引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测数组"><span class="nav-number">3.0.1.</span> <span class="nav-text">检测数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date类型"><span class="nav-number">3.1.</span> <span class="nav-text">Date类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RegExp类型"><span class="nav-number">3.2.</span> <span class="nav-text">RegExp类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式语法"><span class="nav-number">3.2.1.</span> <span class="nav-text">正则表达式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RegExp实例属性"><span class="nav-number">3.3.</span> <span class="nav-text">RegExp实例属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量类型"><span class="nav-number">1.1.</span> <span class="nav-text">变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔操作符"><span class="nav-number">1.2.</span> <span class="nav-text">布尔操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘性操作符"><span class="nav-number">1.3.</span> <span class="nav-text">乘性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加性操作符"><span class="nav-number">1.4.</span> <span class="nav-text">加性操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系操作符"><span class="nav-number">1.5.</span> <span class="nav-text">关系操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相等操作符"><span class="nav-number">1.6.</span> <span class="nav-text">相等操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相等与不相等-是转换后进行比较。"><span class="nav-number">1.6.1.</span> <span class="nav-text">相等与不相等 是转换后进行比较。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全等和不全等是不转换就进行比较"><span class="nav-number">1.6.2.</span> <span class="nav-text">全等和不全等是不转换就进行比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">1.7.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#do-while-while-if-for循环语句"><span class="nav-number">1.7.1.</span> <span class="nav-text">do-while while if for循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in语法"><span class="nav-number">1.7.2.</span> <span class="nav-text">for-in语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#label语句"><span class="nav-number">1.7.3.</span> <span class="nav-text">label语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break与continue语句"><span class="nav-number">1.7.4.</span> <span class="nav-text">break与continue语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with语句"><span class="nav-number">1.7.5.</span> <span class="nav-text">with语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有重载"><span class="nav-number">1.8.1.</span> <span class="nav-text">没有重载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量、作用域和内存问题"><span class="nav-number">2.</span> <span class="nav-text">变量、作用域和内存问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传递参数"><span class="nav-number">2.1.</span> <span class="nav-text">传递参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">检测类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行环境与作用域"><span class="nav-number">2.1.2.</span> <span class="nav-text">执行环境与作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集"><span class="nav-number">2.2.</span> <span class="nav-text">垃圾收集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#管理内存"><span class="nav-number">2.2.1.</span> <span class="nav-text">管理内存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用类型"><span class="nav-number">3.</span> <span class="nav-text">引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测数组"><span class="nav-number">3.0.1.</span> <span class="nav-text">检测数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date类型"><span class="nav-number">3.1.</span> <span class="nav-text">Date类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RegExp类型"><span class="nav-number">3.2.</span> <span class="nav-text">RegExp类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式语法"><span class="nav-number">3.2.1.</span> <span class="nav-text">正则表达式语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RegExp实例属性"><span class="nav-number">3.3.</span> <span class="nav-text">RegExp实例属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作为值的函数"><span class="nav-number">3.3.1.</span> <span class="nav-text">作为值的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数内部属性"><span class="nav-number">3.3.2.</span> <span class="nav-text">函数内部属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#this属性"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">this属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数属性和方法"><span class="nav-number">3.3.3.</span> <span class="nav-text">函数属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结："><span class="nav-number">3.3.4.</span> <span class="nav-text">小结：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象的程序设计"><span class="nav-number">4.</span> <span class="nav-text">面向对象的程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#理解对象"><span class="nav-number">4.1.</span> <span class="nav-text">理解对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性类型"><span class="nav-number">4.1.1.</span> <span class="nav-text">属性类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据属性"><span class="nav-number">4.1.2.</span> <span class="nav-text">数据属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问器属性"><span class="nav-number">4.1.3.</span> <span class="nav-text">访问器属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取属性的特性"><span class="nav-number">4.1.4.</span> <span class="nav-text">读取属性的特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建对象"><span class="nav-number">5.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">5.1.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型模式"><span class="nav-number">5.2.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型与in操作符"><span class="nav-number">5.3.</span> <span class="nav-text">原型与in操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象-1"><span class="nav-number">5.4.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂模式-1"><span class="nav-number">5.4.1.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数模式"><span class="nav-number">5.4.2.</span> <span class="nav-text">构造函数模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型函数模式"><span class="nav-number">5.4.3.</span> <span class="nav-text">原型函数模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合函数模式"><span class="nav-number">5.4.4.</span> <span class="nav-text">组合函数模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态原型模式"><span class="nav-number">5.4.5.</span> <span class="nav-text">动态原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寄生构造函数模式"><span class="nav-number">5.4.6.</span> <span class="nav-text">寄生构造函数模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稳妥构造啊函数模式"><span class="nav-number">5.4.7.</span> <span class="nav-text">稳妥构造啊函数模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">5.5.</span> <span class="nav-text">继承</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小引用与小总结"><span class="nav-number">6.</span> <span class="nav-text">小引用与小总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行上下文"><span class="nav-number">6.1.</span> <span class="nav-text">执行上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建阶段"><span class="nav-number">6.1.1.</span> <span class="nav-text">创建阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量对象"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">变量对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">6.2.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域与作用域链"><span class="nav-number">6.2.1.</span> <span class="nav-text">作用域与作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this解析"><span class="nav-number">6.2.2.</span> <span class="nav-text">this解析</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -873,7 +1094,7 @@ return(item&gt;2);    //false
 
 	<div class="theme-info">
 	<div class="powered-by"></div>
-	<span class="post-count">博客全站共2.2k字</span>
+	<span class="post-count">博客全站共2.7k字</span>
 	</div>
   <!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> -->
 
